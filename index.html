@@ -1,193 +1,332 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Omnichannel Admin Dashboard</title>
+    <title>THREAD & CO. | Premium Outfit Store</title>
     <!-- Tailwind CSS Play CDN -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <!-- Lucide Icons for clean UI symbols -->
+    <!-- Lucide Icons untuk Simbol UI yang Elegan -->
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
-<body class="bg-gray-900 text-gray-100 font-sans antialiased h-screen flex flex-col">
+<body class="bg-gray-950 text-gray-100 font-sans antialiased min-h-screen flex flex-col selection:bg-indigo-500 selection:text-white">
 
-    <!-- Header / Top Navigation -->
-    <header class="bg-gray-800 border-b border-gray-700 px-6 py-4 flex items-center justify-between">
-        <div class="flex items-center space-x-3">
-            <div class="bg-indigo-600 p-2 rounded-lg text-white">
-                <i data-lucide="layers" class="w-6 h-6"></i>
-            </div>
-            <div>
-                <h1 class="text-lg font-bold tracking-wide">CentralInbox</h1>
-                <p class="text-xs text-gray-400">Omnichannel Shared Inbox</p>
-            </div>
-        </div>
+    <!-- TOP ANNOUNCEMENT BAR -->
+    <div class="bg-indigo-600 text-white text-center py-2 px-4 text-xs font-medium tracking-wide">
+        ⚡ PROMO MEI: GRATIS ONGKIR SE-INDONESIA DENGAN MINIMAL BELANJA RP 300.000!
+    </div>
+
+    <!-- NAVBAR / HEADER -->
+    <header class="bg-gray-900/80 backdrop-blur-md border-b border-gray-800 sticky top-0 z-40 px-4 lg:px-8 py-4 flex items-center justify-between">
+        <!-- Logo -->
+        <a href="#" class="flex items-center space-x-2">
+            <span class="text-xl font-black tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400">THREAD & CO.</span>
+        </a>
+
+        <!-- Desktop Navigation -->
+        <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-gray-300">
+            <a href="#" class="hover:text-indigo-400 transition-colors">Semua Produk</a>
+            <a href="#" class="hover:text-indigo-400 transition-colors">Atasan</a>
+            <a href="#" class="hover:text-indigo-400 transition-colors">Bawahan</a>
+            <a href="#" class="hover:text-indigo-400 transition-colors">Koleksi Terbatas</a>
+        </nav>
+
+        <!-- Action Buttons -->
         <div class="flex items-center space-x-4">
-            <span class="flex items-center bg-green-500/10 text-green-400 text-xs px-2.5 py-1 rounded-full font-medium border border-green-500/20">
-                <span class="w-1.5 h-1.5 bg-green-400 rounded-full mr-1.5 animate-pulse"></span>
-                Admin Active
-            </span>
-            <div class="w-9 h-9 rounded-full bg-gray-600 border border-gray-500 flex items-center justify-center text-sm font-semibold">
-                AD
-            </div>
+            <button class="text-gray-400 hover:text-gray-100 p-2 transition-colors relative" title="Cari Produk">
+                <i data-lucide="search" class="w-5 h-5"></i>
+            </button>
+            <button onclick="toggleCart()" class="text-gray-400 hover:text-gray-100 p-2 transition-colors relative" title="Keranjang Belanja">
+                <i data-lucide="shopping-bag" class="w-5 h-5"></i>
+                <span class="absolute top-1 right-1 bg-indigo-500 text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">2</span>
+            </button>
         </div>
     </header>
 
-    <!-- Main Workspace -->
-    <div class="flex flex-1 overflow-hidden">
-        
-        <!-- Sidebar / Chat Queue List -->
-        <aside class="w-80 bg-gray-800 border-r border-gray-700 flex flex-col flex-shrink-0">
-            <div class="p-4 border-b border-gray-700">
-                <div class="relative">
-                    <span class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-gray-400">
-                        <i data-lucide="search" class="w-4 h-4"></i>
-                    </span>
-                    <input type="text" placeholder="Cari percakapan..." class="w-full pl-9 pr-4 py-2 bg-gray-900 border border-gray-700 rounded-lg text-sm text-gray-200 focus:outline-none focus:border-indigo-500 placeholder-gray-500">
+    <!-- HERO SECTION -->
+    <section class="relative bg-gray-950 py-20 lg:py-32 overflow-hidden border-b border-gray-900">
+        <div class="max-w-7xl mx-auto px-4 lg:px-8 relative z-10 flex flex-col items-center text-center">
+            <span class="bg-indigo-500/10 text-indigo-400 text-xs font-semibold tracking-widest uppercase px-3 py-1 rounded-full border border-indigo-500/20 mb-4">
+                Koleksi Terbaru 2026
+            </span>
+            <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight text-white mb-6 max-w-3xl leading-tight">
+                Ekspresikan Karaktermu Lewat <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-400">Outfit Kasual</span> Terbaik
+            </h1>
+            <p class="text-base md:text-lg text-gray-400 max-w-xl mb-10 leading-relaxed">
+                Kombinasi material premium, potongan modern, dan kenyamanan maksimal untuk aktivitas harianmu.
+            </p>
+            <div class="flex flex-col sm:flex-row items-center gap-4">
+                <a href="#produk" class="w-full sm:w-auto bg-indigo-600 hover:bg-indigo-500 text-white font-medium px-8 py-3.5 rounded-xl shadow-lg shadow-indigo-600/20 transition-all text-center flex items-center justify-center gap-2">
+                    Belanja Sekarang <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </a>
+                <a href="#kategori" class="w-full sm:w-auto bg-gray-900 hover:bg-gray-800 text-gray-300 font-medium px-8 py-3.5 rounded-xl border border-gray-800 transition-all text-center">
+                    Lihat Kategori
+                </a>
+            </div>
+        </div>
+        <!-- Gradient Background Layer -->
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(79,70,229,0.08)_0,transparent_60%)]"></div>
+    </section>
+
+    <!-- CATEGORY PICKER -->
+    <section id="kategori" class="py-12 bg-gray-900/40 border-b border-gray-900">
+        <div class="max-w-7xl mx-auto px-4 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="bg-gray-900 border border-gray-800 p-6 rounded-2xl hover:border-indigo-500/50 transition-all cursor-pointer group text-center">
+                    <div class="w-12 h-12 bg-indigo-500/10 text-indigo-400 rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
+                        <i data-lucide="shirt" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-200 text-sm">Kaos & Kemeja</h3>
+                </div>
+                <div class="bg-gray-900 border border-gray-800 p-6 rounded-2xl hover:border-indigo-500/50 transition-all cursor-pointer group text-center">
+                    <div class="w-12 h-12 bg-purple-500/10 text-purple-400 rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
+                        <i data-lucide="footprints" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-200 text-sm">Alas Kaki</h3>
+                </div>
+                <div class="bg-gray-900 border border-gray-800 p-6 rounded-2xl hover:border-indigo-500/50 transition-all cursor-pointer group text-center">
+                    <div class="w-12 h-12 bg-pink-500/10 text-pink-400 rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
+                        <i data-lucide="sparkles" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-200 text-sm">Batik Modern</h3>
+                </div>
+                <div class="bg-gray-900 border border-gray-800 p-6 rounded-2xl hover:border-indigo-500/50 transition-all cursor-pointer group text-center">
+                    <div class="w-12 h-12 bg-orange-500/10 text-orange-400 rounded-xl flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
+                        <i data-lucide="gem" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="font-semibold text-gray-200 text-sm">Aksesoris</h3>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- PRODUCT GRID SECTION -->
+    <main id="produk" class="flex-1 max-w-7xl mx-auto w-full px-4 lg:px-8 py-16">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+            <div>
+                <h2 class="text-2xl font-bold tracking-tight text-white">Katalog Produk Terlaris</h2>
+                <p class="text-sm text-gray-400 mt-1">Produk-produk pilihan paling banyak dicari minggu ini.</p>
+            </div>
+            <div class="flex items-center space-x-2 self-start md:self-auto">
+                <span class="text-xs text-gray-400">Urutkan:</span>
+                <select class="bg-gray-900 border border-gray-800 rounded-xl px-3 py-1.5 text-xs font-medium text-gray-300 focus:outline-none focus:border-indigo-500">
+                    <option>Paling Populer</option>
+                    <option>Terbaru</option>
+                    <option>Harga Rendah - Tinggi</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Cards Container -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             
-            <!-- Chat List Container -->
-            <div class="flex-1 overflow-y-auto divide-y divide-gray-700/50">
-                
-                <!-- Chat Item 1 (WhatsApp) -->
-                <div class="p-4 flex items-start space-x-3 bg-gray-700/30 hover:bg-gray-700/50 cursor-pointer border-l-4 border-indigo-500">
-                    <div class="relative flex-shrink-0">
-                        <div class="w-11 h-11 rounded-full bg-indigo-100 text-indigo-700 flex items-center justify-center font-bold">
-                            B
-                        </div>
-                        <span class="absolute -bottom-1 -right-1 bg-green-500 text-white p-1 rounded-full text-[10px] border-2 border-gray-800 flex items-center justify-center w-5 h-5" title="WhatsApp">
-                            <i data-lucide="phone" class="w-3 h-3"></i>
-                        </span>
-                    </div>
-                    <div class="flex-1 min-w-0">
-                        <div class="flex items-center justify-between mb-1">
-                            <h3 class="text-sm font-semibold text-gray-200 truncate">Budi Santoso</h3>
-                            <span class="text-xs text-gray-400">10:42</span>
-                        </div>
-                        <p class="text-xs text-gray-400 truncate font-medium text-gray-300">Halo min, untuk pesanan jersey kemarin apa sudah dikirim ya?</p>
-                    </div>
+            <!-- Product Item 1 -->
+            <div class="bg-gray-900 border border-gray-800/80 rounded-2xl overflow-hidden flex flex-col group hover:border-gray-700 transition-all duration-300 relative">
+                <!-- Promo Badge -->
+                <span class="absolute top-3 left-3 bg-red-500 text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider z-10">
+                    Diskon 20%
+                </span>
+                <!-- Image Placeholder (Menggunakan Box Abu-Abu Estetik dengan Icon Baju) -->
+                <div class="bg-gray-800 h-64 flex items-center justify-center text-gray-600 group-hover:bg-gray-700/80 transition-colors relative">
+                    <i data-lucide="shirt" class="w-16 h-16 opacity-30"></i>
+                    <span class="absolute bottom-3 right-3 text-[11px] bg-gray-900/70 text-gray-400 px-2 py-0.5 rounded backdrop-blur-xs">Katun Linen</span>
                 </div>
-
-                <!-- Chat Item 2 (Instagram) -->
-                <div class="p-4 flex items-start space-x-3 hover:bg-gray-700/30 cursor-pointer border-l-4 border-transparent">
-                    <div class="relative flex-shrink-0">
-                        <div class="w-11 h-11 rounded-full bg-pink-100 text-pink-700 flex items-center justify-center font-bold">
-                            S
-                        </div>
-                        <span class="absolute -bottom-1 -right-1 bg-gradient-to-tr from-yellow-500 via-pink-500 to-purple-500 text-white p-1 rounded-full text-[10px] border-2 border-gray-800 flex items-center justify-center w-5 h-5" title="Instagram">
-                            <i data-lucide="instagram" class="w-3 h-3"></i>
-                        </span>
-                    </div>
-                    <div class="flex-1 min-w-0">
-                        <div class="flex items-center justify-between mb-1">
-                            <h3 class="text-sm font-semibold text-gray-200 truncate">Siti Rahma</h3>
-                            <span class="text-xs text-gray-400">09:15</span>
-                        </div>
-                        <p class="text-xs text-gray-400 truncate">Kak, cek pricelist custom logo dong kirim ke sini.</p>
-                    </div>
-                </div>
-
-            </div>
-        </aside>
-
-        <!-- Chat Window / Conversation Area -->
-        <main class="flex-1 bg-gray-950 flex flex-col justify-between overflow-hidden">
-            <!-- Active Chat Header -->
-            <div class="bg-gray-800 border-b border-gray-700 px-6 py-3 flex items-center justify-between flex-shrink-0">
-                <div class="flex items-center space-x-3">
-                    <div class="w-10 h-10 rounded-full bg-indigo-100 text-indigo-700 flex items-center justify-center font-bold">
-                        B
-                    </div>
+                <!-- Details -->
+                <div class="p-5 flex-1 flex flex-col justify-between">
                     <div>
-                        <h2 class="text-sm font-semibold text-gray-200">Budi Santoso</h2>
-                        <p class="text-xs text-gray-400 flex items-center">
-                            <i data-lucide="phone" class="w-3 h-3 text-green-400 mr-1"></i> +62 812-3456-7890 (WhatsApp)
-                        </p>
+                        <p class="text-xs text-indigo-400 font-medium tracking-wide uppercase mb-1">Kemeja</p>
+                        <h3 class="text-sm font-semibold text-gray-200 tracking-wide line-clamp-2 group-hover:text-indigo-400 transition-colors">
+                            Linen Relaxed Fit Oversized Shirt
+                        </h3>
+                        <div class="flex items-center gap-2 mt-2">
+                            <span class="text-sm font-bold text-white">Rp 199.000</span>
+                            <span class="text-xs text-gray-500 line-through">Rp 249.000</span>
+                        </div>
                     </div>
-                </div>
-                <div class="flex items-center space-x-2">
-                    <button class="text-gray-400 hover:text-gray-200 p-2 rounded-lg hover:bg-gray-700" title="Transfer Chat">
-                        <i data-lucide="user-check" class="w-5 h-5"></i>
+                    <button class="w-full mt-5 bg-gray-800 hover:bg-indigo-600 text-gray-200 hover:text-white font-medium py-2.5 px-4 rounded-xl text-xs transition-all flex items-center justify-center gap-1.5">
+                        <i data-lucide="plus" class="w-4 h-4"></i> Keranjang
                     </button>
                 </div>
             </div>
 
-            <!-- Messages Stream -->
-            <div class="flex-1 overflow-y-auto p-6 space-y-4">
-                
-                <!-- Incoming Message -->
-                <div class="flex items-end space-x-2 max-w-lg">
-                    <div class="bg-gray-800 border border-gray-700 p-3 rounded-2xl rounded-bl-none text-sm text-gray-200 shadow-sm">
-                        <p>Halo min, untuk pesanan jersey kemarin apa sudah dikirim ya? Soalnya mau dipakai akhir pekan ini.</p>
-                        <span class="block text-[10px] text-gray-500 text-right mt-1.5 font-mono">10:42 AM</span>
-                    </div>
+            <!-- Product Item 2 -->
+            <div class="bg-gray-900 border border-gray-800/80 rounded-2xl overflow-hidden flex flex-col group hover:border-gray-700 transition-all duration-300 relative">
+                <span class="absolute top-3 left-3 bg-indigo-600 text-white text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider z-10">
+                    Eksklusif
+                </span>
+                <div class="bg-gray-800 h-64 flex items-center justify-center text-gray-600 group-hover:bg-gray-700/80 transition-colors relative">
+                    <i data-lucide="palette" class="w-16 h-16 opacity-30"></i>
+                    <span class="absolute bottom-3 right-3 text-[11px] bg-gray-900/70 text-gray-400 px-2 py-0.5 rounded backdrop-blur-xs">Handmade</span>
                 </div>
-
-                <!-- System / Meta Info Log -->
-                <div class="flex justify-center my-2">
-                    <span class="bg-indigo-950 text-indigo-300 text-[11px] px-3 py-1 rounded-full border border-indigo-900/50">
-                        Chat dialihkan otomatis ke <strong>Admin Utama</strong> via Round-Robin
-                    </span>
-                </div>
-
-                <!-- Outgoing Reply Placeholder -->
-                <div class="flex items-end justify-end space-x-2 max-w-lg ml-auto">
-                    <div class="bg-indigo-600 p-3 rounded-2xl rounded-br-none text-sm text-white shadow-sm">
-                        <p>Halo Mas Budi! Mohon ditunggu sebentar ya, saya cekkan nomor resinya ke bagian gudang dulu.</p>
-                        <span class="block text-[10px] text-indigo-200 text-right mt-1.5 font-mono">10:45 AM</span>
-                    </div>
-                </div>
-
-            </div>
-
-            <!-- Reply Input Bar -->
-            <div class="p-4 bg-gray-800 border-t border-gray-700 flex items-center space-x-4 flex-shrink-0">
-                <button class="text-gray-400 hover:text-gray-200 p-1.5 hover:bg-gray-700 rounded-lg">
-                    <i data-lucide="paperclip" class="w-5 h-5"></i>
-                </button>
-                <div class="flex-1">
-                    <input type="text" placeholder="Ketik balasan untuk Budi..." class="w-full bg-gray-900 border border-gray-700 rounded-xl px-4 py-2.5 text-sm text-gray-100 focus:outline-none focus:border-indigo-500 placeholder-gray-500">
-                </div>
-                <button class="bg-indigo-600 hover:bg-indigo-500 text-white p-2.5 rounded-xl shadow-md flex items-center justify-center">
-                    <i data-lucide="send" class="w-4 h-4"></i>
-                </button>
-            </div>
-        </main>
-
-        <!-- Right Sidebar / Customer Context Data -->
-        <aside class="w-64 bg-gray-800 border-l border-gray-700 p-4 overflow-y-auto hidden lg:block flex-shrink-0">
-            <h3 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-4">Profil Pelanggan</h3>
-            <div class="space-y-4 text-sm">
-                <div>
-                    <label class="text-xs text-gray-500 block mb-0.5">Nama Database</label>
-                    <span class="text-gray-200 font-medium">Budi Santoso</span>
-                </div>
-                <div>
-                    <label class="text-xs text-gray-500 block mb-0.5">Status Prospek</label>
-                    <span class="inline-flex items-center bg-orange-500/10 text-orange-400 text-xs px-2 py-0.5 rounded border border-orange-500/20 font-medium mt-1">
-                        Warm Lead
-                    </span>
-                </div>
-                <hr class="border-gray-700 my-2">
-                <div>
-                    <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Riwayat Transaksi</h4>
-                    <div class="bg-gray-900 p-2.5 rounded-lg border border-gray-700/60 mb-2">
-                        <div class="flex justify-between text-xs font-medium text-gray-300">
-                            <span>INV/2026/0512</span>
-                            <span class="text-green-400">Paid</span>
+                <div class="p-5 flex-1 flex flex-col justify-between">
+                    <div>
+                        <p class="text-xs text-purple-400 font-medium tracking-wide uppercase mb-1">Tradisional</p>
+                        <h3 class="text-sm font-semibold text-gray-200 tracking-wide line-clamp-2 group-hover:text-indigo-400 transition-colors">
+                            Batik Casual Slim-Fit Pattern Onyx
+                        </h3>
+                        <div class="flex items-center gap-2 mt-2">
+                            <span class="text-sm font-bold text-white">Rp 285.000</span>
                         </div>
-                        <p class="text-[11px] text-gray-500 mt-1">1x Custom Football Jersey (L)</p>
                     </div>
+                    <button class="w-full mt-5 bg-gray-800 hover:bg-indigo-600 text-gray-200 hover:text-white font-medium py-2.5 px-4 rounded-xl text-xs transition-all flex items-center justify-center gap-1.5">
+                        <i data-lucide="plus" class="w-4 h-4"></i> Keranjang
+                    </button>
                 </div>
             </div>
-        </aside>
 
+            <!-- Product Item 3 -->
+            <div class="bg-gray-900 border border-gray-800/80 rounded-2xl overflow-hidden flex flex-col group hover:border-gray-700 transition-all duration-300 relative">
+                <div class="bg-gray-800 h-64 flex items-center justify-center text-gray-600 group-hover:bg-gray-700/80 transition-colors relative">
+                    <i data-lucide="container" class="w-16 h-16 opacity-30"></i>
+                    <span class="absolute bottom-3 right-3 text-[11px] bg-gray-900/70 text-gray-400 px-2 py-0.5 rounded backdrop-blur-xs">Heavyweight</span>
+                </div>
+                <div class="p-5 flex-1 flex flex-col justify-between">
+                    <div>
+                        <p class="text-xs text-indigo-400 font-medium tracking-wide uppercase mb-1">Kaos</p>
+                        <h3 class="text-sm font-semibold text-gray-200 tracking-wide line-clamp-2 group-hover:text-indigo-400 transition-colors">
+                            Classic Heavyweight Tee 24s Black
+                        </h3>
+                        <div class="flex items-center gap-2 mt-2">
+                            <span class="text-sm font-bold text-white">Rp 120.000</span>
+                        </div>
+                    </div>
+                    <button class="w-full mt-5 bg-gray-800 hover:bg-indigo-600 text-gray-200 hover:text-white font-medium py-2.5 px-4 rounded-xl text-xs transition-all flex items-center justify-center gap-1.5">
+                        <i data-lucide="plus" class="w-4 h-4"></i> Keranjang
+                    </button>
+                </div>
+            </div>
+
+            <!-- Product Item 4 (Stok Habis) -->
+            <div class="bg-gray-900 border border-gray-800/80 rounded-2xl overflow-hidden flex flex-col opacity-60 relative">
+                <span class="absolute top-3 left-3 bg-gray-700 text-gray-300 text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider z-10">
+                    Habis
+                </span>
+                <div class="bg-gray-800 h-64 flex items-center justify-center text-gray-600 relative">
+                    <i data-lucide="pocket" class="w-16 h-16 opacity-20"></i>
+                </div>
+                <div class="p-5 flex-1 flex flex-col justify-between">
+                    <div>
+                        <p class="text-xs text-gray-500 font-medium tracking-wide uppercase mb-1">Jaket</p>
+                        <h3 class="text-sm font-semibold text-gray-400 tracking-wide line-clamp-2">
+                            Windbreaker Canvas Coach Jacket
+                        </h3>
+                        <div class="flex items-center gap-2 mt-2">
+                            <span class="text-sm font-bold text-gray-400">Rp 350.000</span>
+                        </div>
+                    </div>
+                    <button disabled class="w-full mt-5 bg-gray-800 text-gray-500 font-medium py-2.5 px-4 rounded-xl text-xs cursor-not-allowed text-center">
+                        Stok Kosong
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- SHOPPING CART SLIDE-OUT (HIDDEN BY DEFAULT) -->
+    <div id="cartSidebar" class="fixed inset-y-0 right-0 w-full sm:w-96 bg-gray-900 border-l border-gray-800 shadow-2xl z-50 transform translate-x-full transition-transform duration-300 flex flex-col">
+        <div class="p-6 border-b border-gray-800 flex items-center justify-between">
+            <div class="flex items-center space-x-2">
+                <i data-lucide="shopping-bag" class="w-5 h-5 text-indigo-400"></i>
+                <h3 class="font-bold text-lg text-white">Keranjang Belanja</h3>
+            </div>
+            <button onclick="toggleCart()" class="text-gray-400 hover:text-white p-1 hover:bg-gray-800 rounded-lg transition-colors">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+        </div>
+        
+        <!-- Cart Items List -->
+        <div class="flex-1 overflow-y-auto p-6 space-y-4">
+            <!-- Item 1 -->
+            <div class="flex items-center space-x-4 bg-gray-950 p-3 rounded-xl border border-gray-800/60">
+                <div class="w-16 h-16 bg-gray-800 rounded-lg flex items-center justify-center text-gray-500 flex-shrink-0">
+                    <i data-lucide="shirt" class="w-6 h-6"></i>
+                </div>
+                <div class="flex-1 min-w-0">
+                    <h4 class="text-xs font-semibold text-gray-200 truncate">Linen Relaxed Fit Oversized Shirt</h4>
+                    <p class="text-[11px] text-gray-400 mt-0.5">Ukuran: L</p>
+                    <p class="text-xs font-bold text-indigo-400 mt-1">Rp 199.000</p>
+                </div>
+            </div>
+            <!-- Item 2 -->
+            <div class="flex items-center space-x-4 bg-gray-950 p-3 rounded-xl border border-gray-800/60">
+                <div class="w-16 h-16 bg-gray-800 rounded-lg flex items-center justify-center text-gray-500 flex-shrink-0">
+                    <i data-lucide="palette" class="w-6 h-6"></i>
+                </div>
+                <div class="flex-1 min-w-0">
+                    <h4 class="text-xs font-semibold text-gray-200 truncate">Batik Casual Slim-Fit Pattern Onyx</h4>
+                    <p class="text-[11px] text-gray-400 mt-0.5">Ukuran: XL</p>
+                    <p class="text-xs font-bold text-indigo-400 mt-1">Rp 285.000</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Checkout Footer -->
+        <div class="p-6 border-t border-gray-800 bg-gray-950/50">
+            <div class="flex items-center justify-between text-sm font-medium text-gray-300 mb-4">
+                <span>Subtotal:</span>
+                <span class="text-base font-bold text-white">Rp 484.000</span>
+            </div>
+            <!-- Mengarahkan langsung ke WhatsApp untuk kemudahan transaksi -->
+            <a href="https://wa.me/6281234567890?text=Halo%20Admin,%20saya%20mau%20order%20Linen%20Shirt%20(L)%20dan%20Batik%20Onyx%20(XL)" target="_blank" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-3 px-4 rounded-xl text-center block transition-all shadow-md text-sm">
+                Lanjut ke Pembayaran via WA
+            </a>
+        </div>
     </div>
 
-    <!-- Initialize Icons Script -->
+    <!-- BACKDROP BLUR FOR CART -->
+    <div id="cartBackdrop" onclick="toggleCart()" class="fixed inset-0 bg-black/60 backdrop-blur-xs z-40 hidden transition-opacity"></div>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-900 border-t border-gray-800 py-12">
+        <div class="max-w-7xl mx-auto px-4 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div>
+                <h4 class="text-sm font-bold text-white tracking-widest uppercase mb-4">THREAD & CO.</h4>
+                <p class="text-xs text-gray-400 leading-relaxed max-w-sm">
+                    Penyedia lini pakaian kasual berkualitas tinggi yang berfokus pada detail, kenyamanan bahan, dan desain esensial yang tak lekang oleh waktu.
+                </p>
+            </div>
+            <div>
+                <h4 class="text-sm font-bold text-white tracking-wider uppercase mb-4">Bantuan & Informasi</h4>
+                <ul class="text-xs text-gray-400 space-y-2">
+                    <li><a href="#" class="hover:text-indigo-400 transition-colors">Cara Pengukuran Size</a></li>
+                    <li><a href="#" class="hover:text-indigo-400 transition-colors">Kebijakan Pengembalian</a></li>
+                    <li><a href="#" class="hover:text-indigo-400 transition-colors">Lacak Pengiriman</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-sm font-bold text-white tracking-wider uppercase mb-4">Hubungi Kami</h4>
+                <div class="flex space-x-3 mb-4">
+                    <a href="#" class="w-8 h-8 rounded-lg bg-gray-800 flex items-center justify-center text-gray-400 hover:text-white transition-colors">
+                        <i data-lucide="instagram" class="w-4 h-4"></i>
+                    </a>
+                    <a href="#" class="w-8 h-8 rounded-lg bg-gray-800 flex items-center justify-center text-gray-400 hover:text-white transition-colors">
+                        <i data-lucide="phone" class="w-4 h-4"></i>
+                    </a>
+                </div>
+                <p class="text-[11px] text-gray-500">© 2026 THREAD & CO. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE JAVASCRIPT LAYER -->
     <script>
+        // Inisialisasi library icon Lucide agar semua simbol ter-render sempurna
         lucide.createIcons();
+
+        // Fungsi interaktif untuk membuka/tutup keranjang belanja sampingan
+        function toggleCart() {
+            const sidebar = document.getElementById('cartSidebar');
+            const backdrop = document.getElementById('cartBackdrop');
+            
+            if (sidebar.classList.contains('translate-x-full')) {
+                sidebar.classList.remove('translate-x-full');
+                backdrop.classList.remove('hidden');
+            } else {
+                sidebar.addClassList = sidebar.classList.add('translate-x-full');
+                backdrop.classList.add('hidden');
+            }
+        }
     </script>
 </body>
 </html>
