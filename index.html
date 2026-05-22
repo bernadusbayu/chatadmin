@@ -3,213 +3,195 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Senada Order - Menu Digital</title>
+    <title>Senada Order - Premium Menu Digital</title>
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-        body { 
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; 
-            background: #fcf8f2; 
-            color: #333; 
-            padding: 15px;
-            display: flex;
-            justify-content: center;
-        }
-        .main-container {
-            width: 100%;
-            max-width: 480px; /* Standar ukuran layar HP modern */
-            background: #ffffff;
-            border-radius: 16px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-            overflow: hidden;
-            padding-bottom: 30px;
-        }
-        /* Header Kafe */
-        .header {
-            text-align: center;
-            padding: 30px 20px;
-            background: linear-gradient(135deg, #3d2514, #63422b);
-            color: white;
-        }
-        .header h1 {
-            font-size: 24px;
-            margin-bottom: 8px;
-            letter-spacing: 1px;
-        }
-        .badge { 
-            display: inline-block; 
-            background: #e1b16c; 
-            color: #3d2514; 
-            padding: 6px 16px; 
-            border-radius: 20px; 
-            font-weight: bold;
-            font-size: 14px;
-            margin-top: 5px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        /* Kategori Title */
-        .category-title {
-            font-size: 18px;
-            font-weight: bold;
-            padding: 20px 20px 10px 20px;
-            color: #3d2514;
-            border-bottom: 2px solid #f3e9dc;
-            margin-bottom: 15px;
-        }
-        /* Grid Menu */
-        .menu-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 15px;
-            padding: 0 20px;
-        }
-        /* Item Menu */
-        .menu-item {
-            display: flex;
-            background: #fff;
-            border: 1px solid #f3e9dc;
-            border-radius: 12px;
-            overflow: hidden;
-            transition: transform 0.2s;
-        }
-        .menu-item:active {
-            transform: scale(0.98);
-        }
-        .menu-img {
-            width: 100px;
-            height: 100px;
-            object-fit: cover;
-        }
-        .menu-info {
-            flex: 1;
-            padding: 12px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-        .menu-name {
-            font-size: 15px;
-            font-weight: bold;
-            color: #333;
-            margin-bottom: 4px;
-        }
-        .menu-desc {
-            font-size: 12px;
-            color: #777;
-            line-height: 1.3;
-            margin-bottom: 8px;
-        }
-        .menu-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .menu-price {
-            font-size: 14px;
-            font-weight: bold;
-            color: #8B5A2B;
-        }
-        .btn-add {
-            background: #8B5A2B;
-            color: white;
-            border: none;
-            padding: 5px 12px;
-            border-radius: 6px;
-            font-size: 12px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-        /* Footer Agency */
-        .footer-agency {
-            text-align: center;
-            margin-top: 40px;
-            padding: 0 20px;
-            font-size: 11px;
-            color: #aaa;
-        }
-        .footer-agency strong {
-            color: #8B5A2B;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+        body { background: #f8f5f0; color: #2c1a11; display: flex; justify-content: center; min-height: 100vh; }
+        
+        /* Container App Mockup HP */
+        .app-container { width: 100%; max-width: 450px; background: #ffffff; min-height: 100vh; display: flex; flex-direction: column; position: relative; box-shadow: 0 0 20px rgba(0,0,0,0.05); padding-bottom: 90px; }
+        
+        /* Header Premium */
+        .app-header { background: #2c1a11; color: #fff; padding: 25px 20px; border-bottom-left-radius: 24px; border-bottom-right-radius: 24px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        .app-header h1 { font-size: 22px; font-weight: 700; letter-spacing: 0.5px; margin-bottom: 6px; color: #f4eade; }
+        .table-badge { display: inline-block; background: #e6a65d; color: #2c1a11; padding: 5px 16px; border-radius: 30px; font-weight: 700; font-size: 13px; box-shadow: 0 2px 6px rgba(230,166,93,0.3); }
+
+        /* Kategori Tab Menu Scrollable */
+        .category-container { display: flex; gap: 10px; padding: 15px 20px; overflow-x: auto; scrollbar-width: none; background: #ffffff; sticky; top: 0; z-index: 10; }
+        .category-container::-webkit-scrollbar { display: none; }
+        .category-tab { padding: 8px 18px; background: #f0ebdf; border: none; border-radius: 20px; font-size: 13px; font-weight: 600; color: #614a3e; cursor: pointer; white-space: nowrap; transition: all 0.2s; }
+        .category-tab.active { background: #2c1a11; color: #ffffff; box-shadow: 0 4px 10px rgba(44,26,17,0.2); }
+
+        /* Area Daftar Menu */
+        .menu-section { padding: 10px 20px; flex: 1; }
+        .menu-wrapper { display: none; animation: fadeIn 0.3s ease-in-out forwards; }
+        .menu-wrapper.active { display: grid; grid-template-columns: 1fr; gap: 15px; }
+        
+        /* Card Menu Card */
+        .menu-card { display: flex; background: #fff; border-radius: 14px; border: 1px solid #ede7dc; overflow: hidden; box-shadow: 0 2px 6px rgba(0,0,0,0.02); transition: transform 0.2s; }
+        .menu-card:active { transform: scale(0.98); }
+        .menu-img { width: 95px; height: 95px; object-fit: cover; background: #f0ebdf; }
+        .menu-details { flex: 1; padding: 12px; display: flex; flex-direction: column; justify-content: space-between; }
+        .menu-title { font-size: 15px; font-weight: 700; color: #2c1a11; }
+        .menu-desc { font-size: 11px; color: #7c685c; line-height: 1.4; margin: 3px 0 8px 0; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .menu-action { display: flex; justify-content: space-between; align-items: center; }
+        .menu-price { font-size: 14px; font-weight: 700; color: #a06a42; }
+        .btn-add-cart { background: #2c1a11; color: #fff; border: none; padding: 6px 14px; border-radius: 8px; font-size: 12px; font-weight: 600; cursor: pointer; transition: background 0.2s; }
+        .btn-add-cart:hover { background: #4a3225; }
+
+        /* Floating Cart Bar (Bawah Luar) */
+        .cart-bar { position: fixed; bottom: 15px; left: 50%; transform: translateX(-50%); width: calc(100% - 30px); max-width: 420px; background: #2c1a11; border-radius: 16px; padding: 14px 20px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 8px 24px rgba(0,0,0,0.2); color: #fff; cursor: pointer; display: none; z-index: 99; }
+        .cart-info { display: flex; align-items: center; gap: 10px; }
+        .cart-count { background: #e6a65d; color: #2c1a11; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 12px; }
+        .cart-total { font-weight: 700; font-size: 15px; color: #f4eade; }
+        .cart-view-btn { font-size: 13px; font-weight: 600; color: #e6a65d; }
+
+        /* Modal Ringkasan Keranjang */
+        .cart-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 100; display: flex; align-items: flex-end; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
+        .cart-modal.show { opacity: 1; pointer-events: auto; }
+        .modal-content { width: 100%; max-width: 450px; background: #fff; border-top-left-radius: 24px; border-top-right-radius: 24px; padding: 25px 20px; max-height: 80vh; display: flex; flex-direction: column; transform: translateY(100%); transition: transform 0.3s ease; }
+        .cart-modal.show .modal-content { transform: translateY(0); }
+        .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; border-bottom: 1px solid #f0ebdf; padding-bottom: 10px; }
+        .modal-title { font-size: 18px; font-weight: 700; }
+        .btn-close-modal { background: none; border: none; font-size: 20px; cursor: pointer; color: #888; }
+        .cart-items-list { overflow-y: auto; flex: 1; max-height: 40vh; }
+        .cart-item-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px dashed #f0ebdf; }
+        .checkout-box { margin-top: 15px; padding-top: 15px; border-top: 1px solid #f0ebdf; }
+        .checkout-total-row { display: flex; justify-content: space-between; font-weight: 700; font-size: 16px; margin-bottom: 15px; }
+        .btn-checkout-submit { width: 100%; background: #2c1a11; color: #fff; border: none; padding: 14px; border-radius: 12px; font-size: 15px; font-weight: 700; cursor: pointer; }
+
+        /* Footer Agency Logo */
+        .brand-footer { text-align: center; padding: 25px 10px; font-size: 11px; color: #a89a90; }
+        .brand-footer strong { color: #a06a42; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
 
-    <div class="main-container">
-        <div class="header">
+    <div class="app-container">
+        <div class="app-header">
             <h1>Senada Coffee & Space</h1>
-            <div id="nomor-meja" class="badge">Memuat Meja...</div>
+            <div id="nomor-meja" class="table-badge">Memuat Meja...</div>
         </div>
 
-        <div class="category-title">Signature Coffee</div>
-        <div class="menu-grid">
-            <div class="menu-item">
-                <img class="menu-img" src="https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&w=200&q=80" alt="Es Kopi Susu Senada">
-                <div class="menu-info">
-                    <div>
-                        <div class="menu-name">Es Kopi Susu Senada</div>
-                        <div class="menu-desc">Espresso premium blend dengan susu segar dan racikan rahasia gula aren khas Senada.</div>
+        <div class="category-container">
+            <button class="category-tab active" onclick="switchCategory('coffee')">☕ Coffee</button>
+            <button class="category-tab" onclick="switchCategory('non-coffee')">🍵 Non-Coffee</button>
+            <button class="category-tab" onclick="switchCategory('beverages')">🥤 Beverages</button>
+            <button class="category-tab" onclick="switchCategory('snacks')">🥐 Snacks</button>
+        </div>
+
+        <div class="menu-section">
+            
+            <div id="cat-coffee" class="menu-wrapper active">
+                <div class="menu-card">
+                    <img class="menu-img" src="https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&w=150&q=80">
+                    <div class="menu-details">
+                        <div>
+                            <div class="menu-title">Es Kopi Susu Senada</div>
+                            <div class="menu-desc">Espresso blend premium, susu segar, dan racikan rahasia gula aren ala Senada.</div>
+                        </div>
+                        <div class="menu-action">
+                            <div class="menu-price">Rp 22.000</div>
+                            <button class="btn-add-cart" onclick="addToCart('Es Kopi Susu Senada', 22000)">Tambah</button>
+                        </div>
                     </div>
-                    <div class="menu-footer">
-                        <div class="menu-price">Rp 22.000</div>
-                        <button class="btn-add">Tambah</button>
+                </div>
+                <div class="menu-card">
+                    <img class="menu-img" src="https://images.unsplash.com/photo-1570968915860-54d5c301fc9f?auto=format&fit=crop&w=150&q=80">
+                    <div class="menu-details">
+                        <div>
+                            <div class="menu-title">Cafe Latte (Hot)</div>
+                            <div class="menu-desc">Double shot espresso dengan tekstur foam susu lembut dan creamy.</div>
+                        </div>
+                        <div class="menu-action">
+                            <div class="menu-price">Rp 25.000</div>
+                            <button class="btn-add-cart" onclick="addToCart('Cafe Latte (Hot)', 25000)">Tambah</button>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="menu-item">
-                <img class="menu-img" src="https://images.unsplash.com/photo-1570968915860-54d5c301fc9f?auto=format&fit=crop&w=200&q=80" alt="Cafe Latte">
-                <div class="menu-info">
-                    <div>
-                        <div class="menu-name">Cafe Latte (Hot)</div>
-                        <div class="menu-desc">Kombinasi espresso lembut dengan busa susu yang tebal dan creamy.</div>
-                    </div>
-                    <div class="menu-footer">
-                        <div class="menu-price">Rp 25.000</div>
-                        <button class="btn-add">Tambah</button>
+
+            <div id="cat-non-coffee" class="menu-wrapper">
+                <div class="menu-card">
+                    <img class="menu-img" src="https://images.unsplash.com/photo-1536256263959-770b48d82b0a?auto=format&fit=crop&w=150&q=80">
+                    <div class="menu-details">
+                        <div>
+                            <div class="menu-title">Pure Matcha Latte</div>
+                            <div class="menu-desc">Matcha Kyoto Jepang grade A dikombinasikan dengan artisan steamed milk.</div>
+                        </div>
+                        <div class="menu-action">
+                            <div class="menu-price">Rp 26.000</div>
+                            <button class="btn-add-cart" onclick="addToCart('Pure Matcha Latte', 26000)">Tambah</button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="category-title">Non-Coffee</div>
-        <div class="menu-grid">
-            <div class="menu-item">
-                <img class="menu-img" src="https://images.unsplash.com/photo-1536256263959-770b48d82b0a?auto=format&fit=crop&w=200&q=80" alt="Matcha Latte">
-                <div class="menu-info">
-                    <div>
-                        <div class="menu-name">Pure Matcha Latte</div>
-                        <div class="menu-desc">Teh hijau Jepang grade premium yang diseduh konvensional bersama susu cair hangat.</div>
-                    </div>
-                    <div class="menu-footer">
-                        <div class="menu-price">Rp 26.000</div>
-                        <button class="btn-add">Tambah</button>
+            <div id="cat-beverages" class="menu-wrapper">
+                <div class="menu-card">
+                    <img class="menu-img" src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=150&q=80">
+                    <div class="menu-details">
+                        <div>
+                            <div class="menu-title">Tropical Iced Tea</div>
+                            <div class="menu-desc">Teh hitam aromatik dingin dengan ekstrak buah markisa dan jeruk segar.</div>
+                        </div>
+                        <div class="menu-action">
+                            <div class="menu-price">Rp 19.000</div>
+                            <button class="btn-add-cart" onclick="addToCart('Tropical Iced Tea', 19000)">Tambah</button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="category-title">Snacks & Pastry</div>
-        <div class="menu-grid">
-            <div class="menu-item">
-                <img class="menu-img" src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=200&q=80" alt="Butter Croissant">
-                <div class="menu-info">
-                    <div>
-                        <div class="menu-name">Butter Croissant</div>
-                        <div class="menu-desc">Pastry klasik yang renyah di luar namun sangat lembut dan kaya mentega di dalam.</div>
-                    </div>
-                    <div class="menu-footer">
-                        <div class="menu-price">Rp 18.000</div>
-                        <button class="btn-add">Tambah</button>
+            <div id="cat-snacks" class="menu-wrapper">
+                <div class="menu-card">
+                    <img class="menu-img" src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=150&q=80">
+                    <div class="menu-details">
+                        <div>
+                            <div class="menu-title">Butter Croissant</div>
+                            <div class="menu-desc">Flaky dan renyah di luar, kaya akan rasa mentega wijen Prancis di dalam.</div>
+                        </div>
+                        <div class="menu-action">
+                            <div class="menu-price">Rp 18.000</div>
+                            <button class="btn-add-cart" onclick="addToCart('Butter Croissant', 18000)">Tambah</button>
+                        </div>
                     </div>
                 </div>
             </div>
+
         </div>
 
-        <div class="footer-agency">
+        <div class="brand-footer">
             Powered by <strong>Senada CreatLabs</strong><br>
             Digital Harmony | Innovative Creation
+        </div>
+
+        <div id="cartBar" class="cart-bar" onclick="toggleModal(true)">
+            <div class="cart-info">
+                <div id="cartCount" class="cart-count">0</div>
+                <div id="cartTotal" class="cart-total">Rp 0</div>
+            </div>
+            <div class="cart-view-btn">Lihat Keranjang →</div>
+        </div>
+    </div>
+
+    <div id="cartModal" class="cart-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">Detail Pesanan Kamu</div>
+                <button class="btn-close-modal" onclick="event.stopPropagation(); toggleModal(false)">✕</button>
+            </div>
+            <div id="cartItemsList" class="cart-items-list">
+                </div>
+            <div class="checkout-box">
+                <div class="checkout-total-row">
+                    <div>Total Bayar:</div>
+                    <div id="modalTotal">Rp 0</div>
+                </div>
+                <button class="btn-checkout-submit" onclick="submitOrder()">Kirim Pesanan Ke Dapur</button>
+            </div>
         </div>
     </div>
 
