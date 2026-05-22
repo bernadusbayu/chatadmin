@@ -1,27 +1,44 @@
 // ==========================================
-// DATA CORE SYSTEM (DATABASE COFFEE SHOP MOCK)
+// DATA CORE SYSTEM (DATABASE AGREYA COFFEE)
 // ==========================================
 const CATEGORIES = [
+    { id: 'signature', label: '✨ Signature' },
     { id: 'coffee', label: '☕ Coffee' },
-    { id: 'non-coffee', label: '🍵 Non-Coffee' },
-    { id: 'beverages', label: '🥤 Beverages' },
-    { id: 'snacks', label: '🥐 Snacks' }
+    { id: 'non-coffee', label: '🍵 Non-Coffee & Tea' },
+    { id: 'food', label: '🍕 Food & Meals' },
+    { id: 'pastry', label: '🥐 Pastry & Cakes' }
 ];
 
 const MENU_ITEMS = [
-    { id: 1, category: 'coffee', name: 'Es Kopi Susu Senada', price: 22000, desc: 'Espresso blend premium, susu segar murni, dan racikan sirup gula aren rahasia ala Senada.', img: 'https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&w=200&q=80' },
-    { id: 2, category: 'coffee', name: 'Cafe Latte Hot', price: 25000, desc: 'Double shot espresso racikan robusta-arabika dengan selimut foam artisan susu lembut.', img: 'https://images.unsplash.com/photo-1570968915860-54d5c301fc9f?auto=format&fit=crop&w=200&q=80' },
-    { id: 3, category: 'coffee', name: 'Caramel Macchiato', price: 28000, desc: 'Espresso shot dilapisi vanilla foam tebal diakhiri siraman saus karamel legit.', img: 'https://images.unsplash.com/photo-1485808191679-5f86510681a2?auto=format&fit=crop&w=200&q=80' },
-    
-    { id: 4, category: 'non-coffee', name: 'Pure Matcha Latte', price: 26000, desc: 'Teh hijau Kyoto Jepang grade A dikocok merata bersama artisan steamed milk gurih.', img: 'https://images.unsplash.com/photo-1536256263959-770b48d82b0a?auto=format&fit=crop&w=200&q=80' },
-    { id: 5, category: 'non-coffee', name: 'Velvet Red Velvet', price: 25000, desc: 'Bubuk premium red velvet dengan cita rasa kue bolu cokelat manis disajikan dingin.', img: 'https://images.unsplash.com/photo-1612727187633-ce11ad319243?auto=format&fit=crop&w=200&q=80' },
-    
-    { id: 6, category: 'beverages', name: 'Tropical Iced Tea', price: 19000, desc: 'Seduhan daun teh hitam pilihan dengan perasan markisa segar penyegar dahaga.', img: 'https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=200&q=80' },
-    { id: 7, category: 'beverages', name: 'Strawberry Mojito', price: 23000, desc: 'Soda jernih berkarbonasi, sirup strawberry, remasan daun mint segar dan es batu.', img: 'https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=200&q=80' },
-    
-    { id: 8, category: 'snacks', name: 'Butter Croissant', price: 18000, desc: 'Pastry gurih bertekstur flaky garing di luar, berongga mentega lembut di dalam.', img: 'https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=200&q=80' },
-    { id: 9, category: 'snacks', name: 'Almond Chocolate', price: 22000, desc: 'Croissant panggang isi pasta cokelat tebal bertabur irisan kacang almond renyah.', img: 'https://images.unsplash.com/photo-1608686207856-001b95cf60ca?auto=format&fit=crop&w=200&q=80' }
+    // --- KATEGORI: SIGNATURE ---
+    { id: 1, category: 'signature', name: 'Mont Blanc Asih', price: 42000, desc: 'Fruity miles range.', img: 'https://images.unsplash.com/photo-1557006021-b85faa2bc5e2?auto=format&fit=crop&w=200&q=80' },
+    { id: 2, category: 'signature', name: 'Mont Blanc Dimas', price: 42000, desc: 'Acid taste creamy with sea salt.', img: 'https://images.unsplash.com/photo-1572442388796-11668a67e53d?auto=format&fit=crop&w=200&q=80' },
+    { id: 3, category: 'signature', name: 'Sekar Can', price: 39000, desc: 'Espresso, caramel dan cream.', img: 'https://images.unsplash.com/photo-1595928642581-f50f4f3453a5?auto=format&fit=crop&w=200&q=80' },
+
+    // --- KATEGORI: COFFEE ---
+    { id: 4, category: 'coffee', name: 'Es Kopi Susu Agreya', price: 35000, desc: 'Coffee with Milk & Brown Sugar Sweet.', img: 'https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&w=200&q=80' },
+    { id: 5, category: 'coffee', name: 'Ice Salted Caramel Latte', price: 55000, desc: 'Eksotis, manis, dan lezat menaikkan tenaga.', img: 'https://images.unsplash.com/photo-1570968915860-54d5c301fc9f?auto=format&fit=crop&w=200&q=80' },
+    { id: 6, category: 'coffee', name: 'Ice Americano', price: 32000, desc: 'Kopi dingin dengan campuran espresso dan air.', img: 'https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=200&q=80' },
+    { id: 7, category: 'coffee', name: 'Magic (Hot)', price: 45000, desc: 'Sajian Hot Coffee spesialisasi barista.', img: 'https://images.unsplash.com/photo-1610889556528-9a770e32642f?auto=format&fit=crop&w=200&q=80' },
+
+    // --- KATEGORI: NON-COFFEE & TEA ---
+    { id: 8, category: 'non-coffee', name: 'Ice Chocolate', price: 40000, desc: 'Minuman coklat dingin yang menggoda selera dengan sensasi menyegarkan.', img: 'https://images.unsplash.com/photo-1542990253-0d0f5be5f0ed?auto=format&fit=crop&w=200&q=80' },
+    { id: 9, category: 'non-coffee', name: 'Pure Matcha Latte', price: 40000, desc: 'Matcha dengan perpaduan matcha halus dan susu.', img: 'https://images.unsplash.com/photo-1536256263959-770b48d82b0a?auto=format&fit=crop&w=200&q=80' },
+    { id: 10, category: 'non-coffee', name: 'Ice Lychee Tea', price: 38000, desc: 'Segar, manis, menyegarkan.', img: 'https://images.unsplash.com/photo-1556679343-c7306c1976bc?auto=format&fit=crop&w=200&q=80' },
+
+    // --- KATEGORI: FOOD & MEALS ---
+    { id: 11, category: 'food', name: 'Pizzareya Margherita', price: 125000, desc: 'Light plum tomato sauce, creamy aged mozzarella.', img: 'https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=200&q=80' },
+    { id: 12, category: 'food', name: 'Pizzareya Tartubeef', price: 145000, desc: 'Hearty but balanced savory beef crumbs, bright plum tomato sauce.', img: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=200&q=80' },
+
+    // --- KATEGORI: PASTRY & CAKES ---
+    { id: 13, category: 'pastry', name: 'Abon Gulung Premium Cheese', price: 34000, desc: 'Roti Abon Gulung premium dengan paduan keju.', img: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=200&q=80' },
+    { id: 14, category: 'pastry', name: 'Bolen Lilit Reguler Chocolate', price: 28000, desc: 'Pastry bolen pisang renyah dengan isian cokelat.', img: 'https://images.unsplash.com/photo-1608826569116-2da9e763ceb2?auto=format&fit=crop&w=200&q=80' },
+    { id: 15, category: 'pastry', name: 'Tiramisu', price: 50000, desc: 'Dessert klasik dengan lapisan lembut yang creamy.', img: 'https://images.unsplash.com/photo-1571115177098-24ecfa14a5f1?auto=format&fit=crop&w=200&q=80' }
 ];
+
+// Biarkan kode di bawah ini tetap utuh (State Management, dst...)
+let currentCategory = 'signature'; // Ubah default tab ke signature
+
 
 // ==========================================
 // STATE MANAGEMENT (VARIABEL STATUS APLIKASI)
