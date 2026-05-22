@@ -5,20 +5,212 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Senada Order - Menu Digital</title>
     <style>
-        body { font-family: sans-serif; text-align: center; padding: 20px; background: #fcf8f2; color: #333; }
-        .badge { background: #8B5A2B; color: white; padding: 5px 15px; border-radius: 20px; font-weight: bold; }
-        .container { max-width: 400px; margin: 0 auto; background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; 
+            background: #fcf8f2; 
+            color: #333; 
+            padding: 15px;
+            display: flex;
+            justify-content: center;
+        }
+        .main-container {
+            width: 100%;
+            max-width: 480px; /* Standar ukuran layar HP modern */
+            background: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            overflow: hidden;
+            padding-bottom: 30px;
+        }
+        /* Header Kafe */
+        .header {
+            text-align: center;
+            padding: 30px 20px;
+            background: linear-gradient(135deg, #3d2514, #63422b);
+            color: white;
+        }
+        .header h1 {
+            font-size: 24px;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+        }
+        .badge { 
+            display: inline-block; 
+            background: #e1b16c; 
+            color: #3d2514; 
+            padding: 6px 16px; 
+            border-radius: 20px; 
+            font-weight: bold;
+            font-size: 14px;
+            margin-top: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        /* Kategori Title */
+        .category-title {
+            font-size: 18px;
+            font-weight: bold;
+            padding: 20px 20px 10px 20px;
+            color: #3d2514;
+            border-bottom: 2px solid #f3e9dc;
+            margin-bottom: 15px;
+        }
+        /* Grid Menu */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            padding: 0 20px;
+        }
+        /* Item Menu */
+        .menu-item {
+            display: flex;
+            background: #fff;
+            border: 1px solid #f3e9dc;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.2s;
+        }
+        .menu-item:active {
+            transform: scale(0.98);
+        }
+        .menu-img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+        }
+        .menu-info {
+            flex: 1;
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .menu-name {
+            font-size: 15px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 4px;
+        }
+        .menu-desc {
+            font-size: 12px;
+            color: #777;
+            line-height: 1.3;
+            margin-bottom: 8px;
+        }
+        .menu-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .menu-price {
+            font-size: 14px;
+            font-weight: bold;
+            color: #8B5A2B;
+        }
+        .btn-add {
+            background: #8B5A2B;
+            color: white;
+            border: none;
+            padding: 5px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        /* Footer Agency */
+        .footer-agency {
+            text-align: center;
+            margin-top: 40px;
+            padding: 0 20px;
+            font-size: 11px;
+            color: #aaa;
+        }
+        .footer-agency strong {
+            color: #8B5A2B;
+        }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <h1>Senada Coffee</h1>
-        <!-- Bagian ini akan berubah otomatis berdasarkan QR/URL -->
-        <p>Selamat Datang di <span id="nomor-meja" class="badge">Memuat Meja...</span></p>
-        
-        <hr>
-        <p><em>Daftar menu dummy kamu akan ada di sini nanti.</em></p>
+    <div class="main-container">
+        <div class="header">
+            <h1>Senada Coffee & Space</h1>
+            <div id="nomor-meja" class="badge">Memuat Meja...</div>
+        </div>
+
+        <div class="category-title">Signature Coffee</div>
+        <div class="menu-grid">
+            <div class="menu-item">
+                <img class="menu-img" src="https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&w=200&q=80" alt="Es Kopi Susu Senada">
+                <div class="menu-info">
+                    <div>
+                        <div class="menu-name">Es Kopi Susu Senada</div>
+                        <div class="menu-desc">Espresso premium blend dengan susu segar dan racikan rahasia gula aren khas Senada.</div>
+                    </div>
+                    <div class="menu-footer">
+                        <div class="menu-price">Rp 22.000</div>
+                        <button class="btn-add">Tambah</button>
+                    </div>
+                </div>
+            </div>
+            <div class="menu-item">
+                <img class="menu-img" src="https://images.unsplash.com/photo-1570968915860-54d5c301fc9f?auto=format&fit=crop&w=200&q=80" alt="Cafe Latte">
+                <div class="menu-info">
+                    <div>
+                        <div class="menu-name">Cafe Latte (Hot)</div>
+                        <div class="menu-desc">Kombinasi espresso lembut dengan busa susu yang tebal dan creamy.</div>
+                    </div>
+                    <div class="menu-footer">
+                        <div class="menu-price">Rp 25.000</div>
+                        <button class="btn-add">Tambah</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="category-title">Non-Coffee</div>
+        <div class="menu-grid">
+            <div class="menu-item">
+                <img class="menu-img" src="https://images.unsplash.com/photo-1536256263959-770b48d82b0a?auto=format&fit=crop&w=200&q=80" alt="Matcha Latte">
+                <div class="menu-info">
+                    <div>
+                        <div class="menu-name">Pure Matcha Latte</div>
+                        <div class="menu-desc">Teh hijau Jepang grade premium yang diseduh konvensional bersama susu cair hangat.</div>
+                    </div>
+                    <div class="menu-footer">
+                        <div class="menu-price">Rp 26.000</div>
+                        <button class="btn-add">Tambah</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="category-title">Snacks & Pastry</div>
+        <div class="menu-grid">
+            <div class="menu-item">
+                <img class="menu-img" src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=200&q=80" alt="Butter Croissant">
+                <div class="menu-info">
+                    <div>
+                        <div class="menu-name">Butter Croissant</div>
+                        <div class="menu-desc">Pastry klasik yang renyah di luar namun sangat lembut dan kaya mentega di dalam.</div>
+                    </div>
+                    <div class="menu-footer">
+                        <div class="menu-price">Rp 18.000</div>
+                        <button class="btn-add">Tambah</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-agency">
+            Powered by <strong>Senada CreatLabs</strong><br>
+            Digital Harmony | Innovative Creation
+        </div>
     </div>
 
     <script src="script.js"></script>
