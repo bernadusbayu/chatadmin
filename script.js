@@ -1,160 +1,181 @@
 // ==========================================
-// DATA CORE
+// DATABASE SENADA COFFEE & SPACE
 // ==========================================
 const MENU_DATA = [
     {
-        group: "THE JAKARTA FLOSS", subGroup: "ROTI ABON GULUNG",
+        group: "SENADA BITES", subGroup: "ROTI & PASTRY",
         items: [
-            { id: 1, name: "ABON GULUNG PREMIUM CHEESE", price: 34000, desc: "Roti lembut berisi abon sapi premium, paduan keju.", stock: "Item Stock < 10", img: "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=150&q=80", status: "available" },
-            { id: 2, name: "ABON GULUNG PREMIUM SPICY", price: 34000, desc: "Abon sapi premium dengan sensasi pedas yang nendang", stock: "Item Stock < 10", img: "https://images.unsplash.com/photo-1608826569116-2da9e763ceb2?auto=format&fit=crop&w=150&q=80", status: "available" },
-            { id: 3, name: "ABON GULUNG PREMIUM ORIGINAL", price: 34000, desc: "Roti lembut berisi abon sapi premium, gurih klasik dan nagih", stock: "Item Stock < 10", img: "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=150&q=80", status: "available" }
+            { id: 1, name: "ABON GULUNG PREMIUM CHEESE", price: 34000, desc: "Roti lembut berisi abon sapi premium, paduan keju.", img: "https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=150&q=80" },
+            { id: 2, name: "ABON GULUNG PREMIUM SPICY", price: 34000, desc: "Abon sapi premium dengan sensasi pedas yang nendang", img: "https://images.unsplash.com/photo-1608826569116-2da9e763ceb2?auto=format&fit=crop&w=150&q=80" },
+            { id: 4, name: "BOLEN LILIT CHOCO CHEESE", price: 28000, desc: "Perpaduan pisang, keju, dan cokelat dalam pastry renyah", img: "https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=150&q=80" }
         ]
     },
     {
-        group: "BOLEN LILIT", subGroup: "",
+        group: "MAIN COURSE", subGroup: "PIZZA & MEALS",
         items: [
-            { id: 4, name: "BOLEN LILIT REGULER CHOCOLATE", price: 28000, desc: "Pastry bolen pisang renyah dengan isian cokelat premium", stock: "Item Stock < 10", img: "https://images.unsplash.com/photo-1608826569116-2da9e763ceb2?auto=format&fit=crop&w=150&q=80", status: "available" },
-            { id: 5, name: "BOLEN LILIT REGULER CHOCO CHEESE", price: 28000, desc: "Perpaduan pisang, keju, dan cokelat dalam pastry renyah", stock: "Item Stock < 10", img: "https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=150&q=80", status: "available" }
+            { id: 6, name: "PIZZA SENADA MARGHERITA", price: 125000, desc: "Classic pizza with bright plum tomato sauce & mozzarella...", img: "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=150&q=80" }
         ]
     },
     {
-        group: "FOOD", subGroup: "PIZZAREYA",
+        group: "BEVERAGES", subGroup: "SENADA SIGNATURE",
         items: [
-            { id: 6, name: "PIZZAREYA MARGHERITA", price: 125000, desc: "Fresh, clean, and timeless. Classic pizza with bright plum tomato sauce...", stock: "Item Stock < 10", img: "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=150&q=80", status: "available" }
-        ]
-    },
-    {
-        group: "HEALTHY FOOD", subGroup: "",
-        items: [
-            { id: 7, name: "HAPPY BERRY DRAGON BOWL", price: 75000, desc: "", stock: "", img: "https://images.unsplash.com/photo-1494597564530-871f2b93ac55?auto=format&fit=crop&w=150&q=80", status: "sold-out" },
-            { id: 8, name: "HEALTHY POWER BOOSTER", price: 75000, desc: "", stock: "", img: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=150&q=80", status: "sold-out" }
-        ]
-    },
-    {
-        group: "BEVERAGES", subGroup: "AGREYA SIGNATURE",
-        items: [
-            { id: 9, name: "MONT BLANC ASIH", price: 42000, desc: "Fruity notes, with sea salt cream and fresh an orange", stock: "", img: "https://images.unsplash.com/photo-1557006021-b85faa2bc5e2?auto=format&fit=crop&w=150&q=80", status: "available" },
-            { id: 10, name: "MONT BLANC DIMAS", price: 42000, desc: "Bold taste, creamy with sea salt twist", stock: "", img: "https://images.unsplash.com/photo-1572442388796-11668a67e53d?auto=format&fit=crop&w=150&q=80", status: "available" }
+            { id: 9, name: "ES KOPI SUSU SENADA", price: 42000, desc: "Fruity notes, with sea salt cream and fresh an orange", img: "https://images.unsplash.com/photo-1557006021-b85faa2bc5e2?auto=format&fit=crop&w=150&q=80" },
+            { id: 10, name: "SENADA DIMAS BLEND", price: 42000, desc: "Bold taste, creamy with sea salt twist", img: "https://images.unsplash.com/photo-1572442388796-11668a67e53d?auto=format&fit=crop&w=150&q=80" }
         ]
     }
 ];
 
 // STATE APLIKASI
 let currentFilter = 'ALL';
-let cart = {}; // Menyimpan pesanan { itemId: {qty, price} }
+let cart = {}; 
 
-// Inisialisasi Awal
 window.addEventListener('DOMContentLoaded', () => {
     const urlParams = new URLSearchParams(window.location.search);
     let tableParam = urlParams.get('table');
     document.getElementById('nomor-meja').innerText = tableParam ? tableParam : "VIP-01";
-    
     renderMenu();
 });
 
-// ==========================================
-// LOGIKA DROPDOWN & FILTER KATEGORI
-// ==========================================
+// DROPDOWN KATEGORI
 function toggleDropdown() {
-    const list = document.getElementById('dropdownList');
-    list.classList.toggle('show');
+    document.getElementById('dropdownList').classList.toggle('show');
 }
-
 function filterCategory(groupName, displayName) {
     currentFilter = groupName;
     document.getElementById('activeCategoryText').innerText = displayName;
-    toggleDropdown(); // Tutup dropdown
-    renderMenu(); // Render ulang sesuai filter
+    toggleDropdown();
+    renderMenu(); 
 }
 
-// ==========================================
-// LOGIKA RENDER TAMPILAN MENU
-// ==========================================
+// RENDER MENU LIST (BERANDA)
 function renderMenu() {
     const container = document.getElementById('menu-container');
     container.innerHTML = '';
 
     MENU_DATA.forEach(section => {
-        // Cek apakah section ini cocok dengan filter yang aktif
         if (currentFilter !== 'ALL' && section.group !== currentFilter) return;
 
         if (section.group) {
-            const groupTitle = document.createElement('div');
-            groupTitle.className = 'group-title';
-            groupTitle.innerText = section.group;
-            container.appendChild(groupTitle);
+            container.innerHTML += `<div class="group-title">${section.group}</div>`;
         }
-
         if (section.subGroup) {
-            const subGroupTitle = document.createElement('div');
-            subGroupTitle.className = 'sub-group-title';
-            subGroupTitle.innerText = section.subGroup;
-            container.appendChild(subGroupTitle);
+            container.innerHTML += `<div class="sub-group-title">${section.subGroup}</div>`;
         }
 
         section.items.forEach(item => {
-            const isSoldOut = item.status === 'sold-out';
-            const itemDiv = document.createElement('div');
-            itemDiv.className = `menu-item ${isSoldOut ? 'sold-out' : ''}`;
-            
-            // Event klik: Hanya bisa klik jika tidak sold out
-            if (!isSoldOut) {
-                itemDiv.onclick = () => addToCart(item.id, item.price);
-            }
-
-            // Cek jumlah pesanan item ini di keranjang
             const qty = cart[item.id] ? cart[item.id].qty : 0;
-            const qtyBadge = qty > 0 ? `<div class="qty-badge" id="qty-${item.id}">${qty}</div>` : `<div class="qty-badge" id="qty-${item.id}" style="display:none;">0</div>`;
+            const badgeDisplay = qty > 0 ? 'flex' : 'none';
 
-            let stockHtml = isSoldOut ? `<span class="badge-soldout">Sold out</span>` : 
-                            (item.stock ? `<span class="menu-stock">${item.stock}</span>` : '');
-
-            itemDiv.innerHTML = `
-                ${qtyBadge}
-                <img src="${item.img}" class="menu-img">
-                <div class="menu-info">
-                    <div class="menu-name">${item.name}</div>
-                    ${item.desc ? `<div class="menu-desc">${item.desc}</div>` : ''}
-                    <div class="menu-bottom">
-                        <span class="menu-price">Rp${item.price.toLocaleString('id-ID')}</span>
-                        ${stockHtml}
+            container.innerHTML += `
+                <div class="menu-item" onclick="changeQty(${item.id}, ${item.price}, 1)">
+                    <div class="qty-badge" style="display:${badgeDisplay};">${qty}</div>
+                    <img src="${item.img}" class="menu-img">
+                    <div class="menu-info">
+                        <div class="menu-name">${item.name}</div>
+                        <div class="menu-desc">${item.desc}</div>
+                        <div class="menu-bottom">
+                            <span class="menu-price">Rp${item.price.toLocaleString('id-ID')}</span>
+                        </div>
                     </div>
                 </div>
             `;
-            container.appendChild(itemDiv);
         });
     });
 }
 
-// ==========================================
-// LOGIKA KERANJANG BELANJA (CART)
-// ==========================================
-function addToCart(itemId, price) {
-    if (!cart[itemId]) {
-        cart[itemId] = { qty: 0, price: price };
-    }
-    cart[itemId].qty += 1;
+// MANAJEMEN DATA KERANJANG
+function changeQty(itemId, price, delta) {
+    if (!cart[itemId]) cart[itemId] = { qty: 0, price: price, name: getMenuName(itemId) };
     
-    // Animasi Pop-up Kuantitas di Kartu
-    renderMenu(); 
+    cart[itemId].qty += delta;
+    
+    if (cart[itemId].qty <= 0) {
+        delete cart[itemId];
+    }
+    
+    renderMenu();
     updateCartUI();
+    if (document.getElementById('checkoutModal').classList.contains('show')) {
+        renderCheckoutList(); 
+    }
 }
 
-function updateCartUI() {
-    let totalItems = 0;
-    let totalPrice = 0;
+function getMenuName(id) {
+    for (let sec of MENU_DATA) {
+        let found = sec.items.find(i => i.id === id);
+        if (found) return found.name;
+    }
+    return "Menu Item";
+}
 
+// UPDATE TOMBOL BAR BAWAH
+function updateCartUI() {
+    let totalItems = 0; let subtotal = 0;
     Object.keys(cart).forEach(id => {
         totalItems += cart[id].qty;
-        totalPrice += (cart[id].qty * cart[id].price);
+        subtotal += (cart[id].qty * cart[id].price);
     });
 
     const cartBar = document.getElementById('cartBar');
     if (totalItems > 0) {
         cartBar.style.display = 'flex';
         document.getElementById('cartCount').innerText = totalItems;
-        document.getElementById('cartTotal').innerText = `Rp ${totalPrice.toLocaleString('id-ID')}`;
+        document.getElementById('cartTotal').innerText = `Rp ${subtotal.toLocaleString('id-ID')}`;
     } else {
         cartBar.style.display = 'none';
+        closeCheckout(); // Tutup modal jika keranjang kosong
     }
+}
+
+// ==========================================
+// LOGIKA MODAL CHECKOUT (BARU)
+// ==========================================
+function openCheckout() {
+    renderCheckoutList();
+    document.getElementById('checkoutModal').classList.add('show');
+}
+
+function closeCheckout() {
+    document.getElementById('checkoutModal').classList.remove('show');
+}
+
+function renderCheckoutList() {
+    const list = document.getElementById('cartItemsList');
+    list.innerHTML = '';
+    
+    let subtotal = 0;
+
+    Object.keys(cart).forEach(id => {
+        let item = cart[id];
+        let itemTotal = item.qty * item.price;
+        subtotal += itemTotal;
+
+        list.innerHTML += `
+            <div class="cart-item-row">
+                <div class="cart-item-info">
+                    <div class="cart-item-title">${item.name}</div>
+                    <div class="cart-item-price">Rp ${item.price.toLocaleString('id-ID')}</div>
+                </div>
+                <div class="qty-controls">
+                    <button class="qty-btn" onclick="changeQty(${id}, ${item.price}, -1)">-</button>
+                    <div class="qty-val">${item.qty}</div>
+                    <button class="qty-btn" onclick="changeQty(${id}, ${item.price}, 1)">+</button>
+                </div>
+            </div>
+        `;
+    });
+
+    // Hitung Pajak dan Total
+    let tax = Math.round(subtotal * 0.1);
+    let finalTotal = subtotal + tax;
+
+    document.getElementById('billSubtotal').innerText = `Rp ${subtotal.toLocaleString('id-ID')}`;
+    document.getElementById('billTax').innerText = `Rp ${tax.toLocaleString('id-ID')}`;
+    document.getElementById('billTotalFinal').innerText = `Rp ${finalTotal.toLocaleString('id-ID')}`;
+}
+
+// KIRIM PESANAN (TAMPILKAN SUKSES)
+function submitOrder() {
+    closeCheckout();
+    document.getElementById('successOverlay').style.display = 'flex';
 }
