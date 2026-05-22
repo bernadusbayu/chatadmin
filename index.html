@@ -21,79 +21,71 @@
         
         .app-container { width: 100%; max-width: 480px; background: var(--surface); min-height: 100vh; position: relative; padding-bottom: 90px; box-shadow: 0 0 20px rgba(0,0,0,0.05); overflow-x: hidden; }
 
-        /* Hero & Top Nav */
+        /* Hero & Header */
         .hero-section { width: 100%; height: 180px; background: url('https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=600&q=80') center/cover; position: relative; }
         .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4); }
-        .top-nav { position: absolute; top: 15px; right: 15px; display: flex; gap: 10px; z-index: 2; }
-        .icon-btn { width: 36px; height: 36px; border-radius: 50%; background: white; border: none; display: flex; align-items: center; justify-content: center; font-size: 16px; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        .top-nav { position: absolute; top: 15px; right: 15px; display: flex; gap: 10px; z-index: 10; }
+        
+        /* Tombol Keranjang Atas */
+        .icon-btn { width: 38px; height: 38px; border-radius: 50%; background: white; border: none; display: flex; align-items: center; justify-content: center; font-size: 18px; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
 
-        /* Store Cards */
+        /* Info Toko */
         .info-section { padding: 0 15px; margin-top: -20px; position: relative; z-index: 3; }
         .store-card { background: white; border-radius: 12px; padding: 15px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); margin-bottom: 12px; }
         .store-title { font-size: 16px; font-weight: 800; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; }
-        .badge-closed { background: var(--accent-red); color: white; padding: 4px 10px; border-radius: 6px; font-size: 11px; font-weight: 700; display: inline-block; }
+        .badge-closed { background: #2e7d32; color: white; padding: 4px 10px; border-radius: 6px; font-size: 11px; font-weight: 700; display: inline-block; }
         .table-card { background: var(--table-bg); border-radius: 12px; padding: 15px; text-align: center; font-weight: 600; font-size: 14px; margin-bottom: 12px; border: 1px solid #faeacc; }
 
         /* Dropdown Kategori */
         .category-selector { position: sticky; top: 0; background: white; padding: 15px; z-index: 10; border-bottom: 1px solid var(--border-color); }
-        .dropdown-box { border: 1px solid var(--accent-gold); border-radius: 8px; padding: 10px 15px; font-size: 13px; font-weight: 700; color: #b8860b; display: flex; justify-content: space-between; align-items: center; cursor: pointer; background: white; }
+        .dropdown-box { border: 1px solid var(--accent-gold); border-radius: 8px; padding: 10px 15px; font-size: 13px; font-weight: 700; color: #b8860b; display: flex; justify-content: space-between; align-items: center; cursor: pointer; }
         .dropdown-list { display: none; position: absolute; top: 60px; left: 15px; right: 15px; background: white; border: 1px solid var(--border-color); border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); overflow: hidden; z-index: 11; }
         .dropdown-list.show { display: block; }
         .dropdown-item { padding: 12px 15px; border-bottom: 1px solid var(--border-color); font-size: 13px; font-weight: 600; cursor: pointer; }
 
-        /* Menu Items */
-        .group-title { font-size: 14px; font-weight: 600; color: var(--text-muted); margin: 20px 15px 10px 15px; text-transform: uppercase; letter-spacing: 0.5px; }
+        /* Daftar Menu */
+        .group-title { font-size: 14px; font-weight: 600; color: var(--text-muted); margin: 20px 15px 10px 15px; text-transform: uppercase; }
         .sub-group-title { font-size: 15px; font-weight: 700; margin: 0 15px 15px 15px; }
-        .menu-item { display: flex; gap: 15px; padding: 15px; border-bottom: 1px solid var(--border-color); transition: background 0.2s; cursor: pointer; position: relative; }
-        .menu-item:active { background: #f5f5f5; }
+        .menu-item { display: flex; gap: 15px; padding: 15px; border-bottom: 1px solid var(--border-color); cursor: pointer; position: relative; }
         .menu-img { width: 85px; height: 85px; border-radius: 12px; object-fit: cover; border: 1px solid var(--border-color); }
         .menu-info { flex: 1; display: flex; flex-direction: column; justify-content: center; }
         .menu-name { font-size: 14px; font-weight: 700; margin-bottom: 4px; line-height: 1.3; }
-        .menu-desc { font-size: 12px; color: var(--text-muted); line-height: 1.4; margin-bottom: 8px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-        .menu-bottom { display: flex; justify-content: space-between; align-items: flex-end; margin-top: auto; }
-        .menu-price { font-size: 14px; font-weight: 700; }
+        .menu-desc { font-size: 12px; color: var(--text-muted); margin-bottom: 8px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        .menu-price { font-size: 14px; font-weight: 700; margin-top: auto; }
         
-        .qty-badge { position: absolute; right: 15px; top: 15px; background: var(--accent-red); color: white; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: bold; display: none; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
+        .qty-badge { position: absolute; right: 15px; top: 15px; background: var(--accent-red); color: white; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: bold; display: none; }
 
-        /* Floating Cart Bar */
-        .cart-bar { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); width: calc(100% - 30px); max-width: 420px; background: var(--accent-red); color: white; border-radius: 12px; padding: 14px 20px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 8px 20px rgba(211,47,47,0.35); z-index: 50; cursor: pointer; display: none; }
+        /* Floating Cart Bar Animasi Presisi */
+        .cart-bar { position: fixed; bottom: 20px; left: 50%; width: calc(100% - 30px); max-width: 420px; background: var(--accent-red); color: white; border-radius: 12px; padding: 14px 20px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 8px 20px rgba(211,47,47,0.35); z-index: 50; cursor: pointer; transform: translate(-50%, 100px); opacity: 0; pointer-events: none; transition: all 0.4s ease; }
+        .cart-bar.show { transform: translate(-50%, 0); opacity: 1; pointer-events: auto; }
         .cart-count { background: white; color: var(--accent-red); width: 24px; height: 24px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-weight: bold; font-size: 12px; margin-right: 12px; }
         .cart-total { font-weight: bold; font-size: 15px; }
 
-        /* =========================================
-           CHECKOUT MODAL & INVOICE (BARU)
-           ========================================= */
-        .checkout-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 100; display: none; align-items: flex-end; justify-content: center; opacity: 0; transition: opacity 0.3s ease; }
-        .checkout-modal.show { display: flex; opacity: 1; }
-        .modal-content { width: 100%; max-width: 480px; background: white; border-radius: 24px 24px 0 0; padding: 20px 20px 30px 20px; max-height: 85vh; display: flex; flex-direction: column; transform: translateY(100%); transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1); }
+        /* Modal Checkout (Popup Bawah Anti Gagal) */
+        .checkout-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 1000; display: flex; align-items: flex-end; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
+        .checkout-modal.show { opacity: 1; pointer-events: auto; }
+        .modal-content { width: 100%; max-width: 480px; background: white; border-radius: 24px 24px 0 0; padding: 20px 20px 30px 20px; max-height: 85vh; display: flex; flex-direction: column; transform: translateY(100%); transition: transform 0.3s ease; }
         .checkout-modal.show .modal-content { transform: translateY(0); }
         
         .modal-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); padding-bottom: 15px; margin-bottom: 10px; }
-        .modal-header h2 { font-size: 18px; font-weight: 800; }
-        .btn-close { background: #f0f0f0; border: none; width: 32px; height: 32px; border-radius: 50%; font-size: 16px; cursor: pointer; font-weight: bold; color: #555; }
-
-        .cart-items-list { overflow-y: auto; flex: 1; margin-bottom: 15px; padding-right: 5px; }
+        .btn-close { background: #f0f0f0; border: none; width: 32px; height: 32px; border-radius: 50%; font-size: 14px; cursor: pointer; font-weight: bold; }
+        .cart-items-list { overflow-y: auto; flex: 1; margin-bottom: 15px; }
         .cart-item-row { display: flex; justify-content: space-between; align-items: center; padding: 15px 0; border-bottom: 1px dashed var(--border-color); }
-        .cart-item-info { flex: 1; padding-right: 15px; }
+        .cart-item-info { flex: 1; }
         .cart-item-title { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
         .cart-item-price { font-size: 13px; color: var(--accent-red); font-weight: 600; }
         
         .qty-controls { display: flex; align-items: center; gap: 12px; background: #f9f9f9; padding: 6px 12px; border-radius: 20px; border: 1px solid var(--border-color); }
-        .qty-btn { background: none; border: none; font-size: 18px; font-weight: bold; color: var(--text-main); cursor: pointer; display: flex; align-items: center; justify-content: center; width: 24px; }
-        .qty-val { font-size: 14px; font-weight: 700; width: 16px; text-align: center; }
-
+        .qty-btn { background: none; border: none; font-size: 18px; font-weight: bold; cursor: pointer; width: 24px; text-align: center; }
+        
         .bill-box { background: #fdfdfd; border: 1px solid var(--border-color); border-radius: 12px; padding: 15px; margin-bottom: 20px; }
         .bill-row { display: flex; justify-content: space-between; font-size: 13px; color: var(--text-muted); margin-bottom: 8px; }
         .bill-row.total { border-top: 1px dashed var(--border-color); margin-top: 10px; padding-top: 10px; font-size: 16px; font-weight: 800; color: var(--text-main); margin-bottom: 0; }
 
-        .btn-submit { width: 100%; background: var(--accent-red); color: white; border: none; padding: 16px; border-radius: 14px; font-size: 16px; font-weight: 700; cursor: pointer; box-shadow: 0 4px 15px rgba(211,47,47,0.3); transition: transform 0.1s; }
-        .btn-submit:active { transform: scale(0.98); }
-
-        /* Success Overlay Animasi */
-        .success-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; z-index: 200; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; display: none; }
-        .success-icon { font-size: 70px; margin-bottom: 20px; animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-        @keyframes popIn { 0% { transform: scale(0); } 100% { transform: scale(1); } }
+        .btn-submit { width: 100%; background: var(--accent-red); color: white; border: none; padding: 16px; border-radius: 14px; font-size: 16px; font-weight: 700; cursor: pointer; }
         
+        /* Layar Sukses */
+        .success-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: white; z-index: 2000; display: none; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
     </style>
 </head>
 <body>
@@ -102,14 +94,14 @@
         <div class="hero-section">
             <div class="hero-overlay"></div>
             <div class="top-nav">
-                <button class="icon-btn">🔍</button>
+                <button class="icon-btn" onclick="openCheckout()">🛒</button>
             </div>
         </div>
 
         <div class="info-section">
             <div class="store-card">
                 <div class="store-title">Senada Coffee & Space <span style="color:#ccc;">›</span></div>
-                <div class="badge-closed" style="background:#2e7d32;">OPEN - Close Today 22:00</div>
+                <div class="badge-closed">OPEN - Close Today 22:00</div>
             </div>
             
             <div class="table-card">
@@ -118,7 +110,7 @@
         </div>
 
         <div class="category-selector">
-            <div class="dropdown-box" id="dropdownBtn" onclick="toggleDropdown()">
+            <div class="dropdown-box" onclick="toggleDropdown()">
                 <span id="activeCategoryText">SEMUA MENU</span>
                 <span>⌄</span>
             </div>
@@ -137,7 +129,7 @@
                 <span id="cartCount" class="cart-count">0</span>
                 <span id="cartTotal" class="cart-total">Rp 0</span>
             </div>
-            <div style="font-size: 13px; font-weight: bold;">Keranjang ➔</div>
+            <div style="font-size: 13px; font-weight: bold;">Lihat Keranjang ➔</div>
         </div>
     </div>
 
@@ -171,10 +163,10 @@
     </div>
 
     <div id="successOverlay" class="success-overlay">
-        <div class="success-icon">✅</div>
+        <div style="font-size: 70px; margin-bottom: 20px;">✅</div>
         <h2 style="font-weight:800; color:#111; margin-bottom:8px;">Pesanan Diterima!</h2>
         <p style="color:#666; font-size:14px; margin-bottom:30px; padding:0 30px;">Barista Senada Coffee sedang menyiapkan pesanan untuk meja Anda. Harap tunggu di tempat.</p>
-        <button class="btn-submit" style="width:auto; padding:12px 30px;" onclick="window.location.reload()">Tutup Layar</button>
+        <button class="btn-submit" style="width:auto; padding:12px 30px;" onclick="window.location.reload()">Selesai</button>
     </div>
 
     <script src="script.js"></script>
