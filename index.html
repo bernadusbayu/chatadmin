@@ -3,274 +3,115 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Senada Order - Premium Self-Ordering System</title>
+    <title>Agreya Coffee - Self Ordering</title>
     <style>
         :root {
-            --primary: #1e1b18;
-            --accent: #bc986a;
-            --accent-light: #f5efe6;
-            --bg-main: #fcfbfa;
-            --text-dark: #2c2623;
-            --text-muted: #7a706b;
+            --text-main: #111111;
+            --text-muted: #666666;
+            --bg-main: #f5f5f5;
             --surface: #ffffff;
-            --border: #f1eae1;
+            --border-color: #eeeeee;
+            --accent-gold: #e8b331;
+            --accent-red: #d32f2f;
+            --table-bg: #fdf8ef;
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
-        body { background: #f5f3f0; color: var(--text-dark); display: flex; justify-content: center; min-height: 100vh; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+        body { background: var(--bg-main); color: var(--text-main); display: flex; justify-content: center; min-height: 100vh; }
         
-        /* Container Mockup Smartphone */
-        .app-container { 
-            width: 100%; 
-            max-width: 450px; 
-            background: var(--bg-main); 
-            min-height: 100vh; 
-            display: flex; 
-            flex-direction: column; 
-            position: relative; 
-            box-shadow: 0 0 30px rgba(0,0,0,0.08); 
-            padding-bottom: 100px; 
-        }
+        /* App Container */
+        .app-container { width: 100%; max-width: 480px; background: var(--surface); min-height: 100vh; position: relative; padding-bottom: 80px; box-shadow: 0 0 20px rgba(0,0,0,0.05); }
+
+        /* Hero Image & Top Nav */
+        .hero-section { width: 100%; height: 180px; background: url('https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=600&q=80') center/cover; position: relative; }
+        .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4); }
+        .top-nav { position: absolute; top: 15px; right: 15px; display: flex; gap: 10px; z-index: 2; }
+        .icon-btn { width: 36px; height: 36px; border-radius: 50%; background: white; border: none; display: flex; align-items: center; justify-content: center; font-size: 16px; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+
+        /* Store Info Cards */
+        .info-section { padding: 0 15px; margin-top: -20px; position: relative; z-index: 3; }
+        .store-card { background: white; border-radius: 12px; padding: 15px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); margin-bottom: 12px; }
+        .store-title { font-size: 16px; font-weight: 700; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; }
+        .badge-closed { background: var(--accent-red); color: white; padding: 4px 10px; border-radius: 6px; font-size: 11px; font-weight: 700; display: inline-block; }
         
-        /* Header Banner Estetik */
-        .app-header { 
-            background: linear-gradient(180deg, #1e1b18 0%, #2e2824 100%); 
-            color: #fff; 
-            padding: 30px 20px 35px 20px; 
-            border-bottom-left-radius: 28px; 
-            border-bottom-right-radius: 28px; 
-            text-align: center; 
-            position: relative;
-        }
-        .app-header h1 { font-size: 24px; font-weight: 800; letter-spacing: 0.5px; color: #fdfaf7; margin-bottom: 8px; }
-        .app-header p { font-size: 12px; color: #b5a99f; margin-bottom: 12px; }
-        .table-badge { 
-            display: inline-flex; 
-            align-items: center; 
-            gap: 6px;
-            background: var(--accent); 
-            color: var(--primary); 
-            padding: 6px 18px; 
-            border-radius: 30px; 
-            font-weight: 800; 
-            font-size: 13px; 
-            box-shadow: 0 4px 12px rgba(188,152,106,0.3); 
-        }
-
-        /* Navigasi Kategori Geser (Horizontal Scroll) */
-        .category-container { 
-            display: flex; 
-            gap: 12px; 
-            padding: 20px; 
-            overflow-x: auto; 
-            scrollbar-width: none; 
-            background: var(--bg-main); 
-            position: sticky; 
-            top: 0; 
-            z-index: 10; 
-        }
-        .category-container::-webkit-scrollbar { display: none; }
-        .category-tab { 
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            padding: 10px 20px; 
-            background: var(--surface); 
-            border: 1px solid var(--border); 
-            border-radius: 30px; 
-            font-size: 13px; 
-            font-weight: 700; 
-            color: var(--text-muted); 
-            cursor: pointer; 
-            white-space: nowrap; 
-            transition: all 0.25s ease; 
-        }
-        .category-tab.active { 
-            background: var(--primary); 
-            color: #ffffff; 
-            border-color: var(--primary);
-            box-shadow: 0 4px 12px rgba(30,27,24,0.15); 
-        }
-
-        /* Wadah Utama Daftar Menu */
-        .menu-section { padding: 0 20px; flex: 1; min-height: 300px; }
-        .menu-grid { display: grid; grid-template-columns: 1fr; gap: 16px; animation: fadeInUp 0.4s ease; }
+        .table-card { background: var(--table-bg); border-radius: 12px; padding: 15px; text-align: center; font-weight: 600; font-size: 14px; margin-bottom: 12px; border: 1px solid #faeacc; }
         
-        /* Desain Card Menu */
-        .menu-card { 
-            display: flex; 
-            background: var(--surface); 
-            border-radius: 18px; 
-            border: 1px solid var(--border); 
-            overflow: hidden; 
-            box-shadow: 0 4px 10px rgba(0,0,0,0.015); 
-            transition: transform 0.2s, box-shadow 0.2s; 
-        }
-        .menu-card:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,0.03); }
-        .menu-img { width: 110px; height: 110px; object-fit: cover; background: #eae5dd; }
-        .menu-details { flex: 1; padding: 14px; display: flex; flex-direction: column; justify-content: space-between; }
-        .menu-title { font-size: 16px; font-weight: 700; color: var(--primary); }
-        .menu-desc { font-size: 12px; color: var(--text-muted); line-height: 1.4; margin: 4px 0 10px 0; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-        .menu-action { display: flex; justify-content: space-between; align-items: center; }
-        .menu-price { font-size: 15px; font-weight: 800; color: var(--accent); }
+        .promo-card { display: flex; align-items: center; gap: 12px; padding: 12px 15px; border-top: 1px solid var(--border-color); font-size: 12px; color: var(--text-muted); }
+        .promo-card strong { color: #d68b1e; font-weight: 600; }
+
+        /* Sticky Category Selector */
+        .category-selector { position: sticky; top: 0; background: white; padding: 15px; z-index: 10; border-bottom: 1px solid var(--border-color); }
+        .dropdown-box { border: 1px solid var(--accent-gold); border-radius: 8px; padding: 10px 15px; font-size: 12px; font-weight: 700; color: #b8860b; display: flex; justify-content: space-between; align-items: center; }
+
+        /* Menu List Styling */
+        .menu-group { margin-bottom: 25px; }
+        .group-title { font-size: 14px; font-weight: 600; color: var(--text-muted); margin: 20px 15px 10px 15px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .sub-group-title { font-size: 15px; font-weight: 700; margin: 0 15px 15px 15px; }
         
-        /* Elemen Tombol Kontrol Kuantitas */
-        .quantity-control { display: flex; align-items: center; background: var(--accent-light); border-radius: 8px; overflow: hidden; border: 1px solid #ebdcc5; }
-        .qty-btn { background: none; border: none; width: 28px; height: 28px; font-weight: bold; font-size: 16px; cursor: pointer; color: var(--primary); display: flex; align-items: center; justify-content: center; }
-        .qty-btn:active { background: #ebdcc5; }
-        .qty-number { font-size: 13px; font-weight: 700; width: 24px; text-align: center; }
-        .btn-add-initial { background: var(--primary); color: #fff; border: none; padding: 7px 16px; border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer; transition: background 0.2s; }
-        .btn-add-initial:hover { background: #3a322d; }
-
-        /* Floating Cart Bar di Layar Bawah */
-        .cart-bar { 
-            position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); 
-            width: calc(100% - 40px); max-width: 410px; 
-            background: var(--primary); border-radius: 18px; padding: 16px 22px; 
-            display: flex; justify-content: space-between; align-items: center; 
-            box-shadow: 0 10px 25px rgba(30,27,24,0.3); color: #fff; 
-            cursor: pointer; display: none; z-index: 90; animation: slideUp 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-        .cart-info { display: flex; align-items: center; gap: 12px; }
-        .cart-count { background: var(--accent); color: var(--primary); width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 13px; }
-        .cart-total { font-weight: 800; font-size: 16px; color: #fdfaf7; }
-        .cart-view-btn { font-size: 13px; font-weight: 700; color: var(--accent); display: flex; align-items: center; gap: 4px; }
-
-        /* Modal Slip Keranjang Belanja */
-        .cart-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 100; display: flex; align-items: flex-end; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
-        .cart-modal.show { opacity: 1; pointer-events: auto; }
-        .modal-content { width: 100%; max-width: 450px; background: #fff; border-top-left-radius: 28px; border-top-right-radius: 28px; padding: 25px 20px; max-height: 85vh; display: flex; flex-direction: column; transform: translateY(100%); transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1); }
-        .cart-modal.show .modal-content { transform: translateY(0); }
-        .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; border-bottom: 1px solid var(--border); padding-bottom: 12px; }
-        .modal-title { font-size: 18px; font-weight: 800; color: var(--primary); }
-        .btn-close-modal { background: none; border: none; font-size: 22px; cursor: pointer; color: var(--text-muted); }
+        .menu-item { display: flex; gap: 15px; padding: 15px; border-bottom: 1px solid var(--border-color); transition: background 0.2s; cursor: pointer; }
+        .menu-item:hover { background: #fdfdfd; }
+        .menu-img { width: 85px; height: 85px; border-radius: 12px; object-fit: cover; border: 1px solid var(--border-color); }
         
-        .cart-items-list { overflow-y: auto; flex: 1; margin-bottom: 10px; padding-right: 2px; }
-        .cart-item-row { display: flex; justify-content: space-between; align-items: center; padding: 14px 0; border-bottom: 1px dashed var(--border); }
-        .note-input { width: 100%; border: 1px solid var(--border); background: #faf9f7; padding: 8px 12px; border-radius: 8px; font-size: 12px; margin-top: 6px; outline: none; color: var(--text-dark); }
-        .note-input:focus { border-color: var(--accent); }
+        .menu-info { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+        .menu-name { font-size: 14px; font-weight: 700; margin-bottom: 4px; line-height: 1.3; }
+        .menu-desc { font-size: 12px; color: var(--text-muted); line-height: 1.4; margin-bottom: 8px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        
+        .menu-bottom { display: flex; justify-content: space-between; align-items: flex-end; margin-top: auto; }
+        .menu-price { font-size: 14px; font-weight: 700; }
+        .menu-stock { font-size: 11px; color: var(--text-muted); }
+        
+        /* Status Sold Out */
+        .menu-item.sold-out .menu-img { filter: grayscale(100%) opacity(0.6); }
+        .menu-item.sold-out .menu-name, .menu-item.sold-out .menu-desc, .menu-item.sold-out .menu-price { color: #a0a0a0; }
+        .badge-soldout { font-size: 12px; font-weight: 700; color: #888; }
 
-        /* Detail Breakdown Nota */
-        .invoice-box { background: #faf9f7; border-radius: 12px; padding: 14px; margin-top: 10px; }
-        .invoice-row { display: flex; justify-content: space-between; font-size: 13px; color: var(--text-muted); margin-bottom: 6px; }
-        .invoice-row.total-final { font-size: 16px; font-weight: 800; color: var(--primary); margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--border); margin-bottom: 0; }
-        .btn-checkout-submit { width: 100%; background: var(--primary); color: #fff; border: none; padding: 15px; border-radius: 14px; font-size: 15px; font-weight: 700; margin-top: 15px; cursor: pointer; transition: background 0.2s; }
-        .btn-checkout-submit:hover { background: #3a322d; }
+        /* Add Button Logic (Hidden by default, shown on click/cart logic) */
+        .btn-add { background: white; border: 1px solid var(--border-color); padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; cursor: pointer; }
 
-        /* Screen Nota Sukses (Custom Receipt Screen) */
-        .success-screen { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: #ffffff; z-index: 200; display: none; flex-direction: column; align-items: center; padding: 40px 25px; text-align: center; animation: fadeIn 0.4s ease forwards; }
-        .success-icon { width: 64px; height: 64px; background: #e8f5e9; color: #2e7d32; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; font-size: 28px; font-weight: bold; }
-        .receipt-card { width: 100%; background: #faf9f7; border: 1px solid var(--border); border-radius: 16px; padding: 20px; margin: 20px 0; position: relative; text-align: left; }
-        .receipt-card::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 100%; height: 10px; background-image: linear-gradient(-45deg, #faf9f7 4px, transparent 0), linear-gradient(45deg, #faf9f7 4px, transparent 0); background-size: 8px 12px; }
-        .receipt-header { text-align: center; border-bottom: 1px dashed var(--border); padding-bottom: 12px; margin-bottom: 12px; }
-        .receipt-title { font-weight: 800; font-size: 16px; color: var(--primary); }
-        .receipt-row { display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 6px; }
-        .btn-back-home { background: var(--accent); color: var(--primary); border: none; width: 100%; padding: 14px; border-radius: 12px; font-weight: 700; font-size: 14px; cursor: pointer; margin-top: auto; }
-
-        /* Branding Agency Footer */
-        .brand-footer { text-align: center; padding: 35px 10px 15px 10px; font-size: 11px; color: #baaead; line-height: 1.5; }
-        .brand-footer strong { color: var(--accent); font-weight: 700; }
-
-        /* Animasi */
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes slideUp { from { opacity: 0; transform: translate(-50%, 30px); } to { opacity: 1; transform: translate(-50%, 0); } }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     </style>
 </head>
 <body>
 
-    <div class="app-container" id="appBody">
-        <div class="app-header">
-            <h1>Senada Coffee & Space</h1>
-            <p>Freshly Brewed Digital Experience</p>
-            <div id="nomor-meja" class="table-badge">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                <span id="meja-text">Memuat...</span>
+    <div class="app-container">
+        <div class="hero-section">
+            <div class="hero-overlay"></div>
+            <div class="top-nav">
+                <button class="icon-btn">🔍</button>
+                <button class="icon-btn">☰</button>
             </div>
         </div>
 
-        <div class="category-container" id="categoryNav">
-            </div>
-
-        <div class="menu-section">
-            <div id="menuGrid" class="menu-grid">
-                </div>
-        </div>
-
-        <div class="brand-footer">
-            Sistem Solusi Digital oleh <strong>Senada CreatLabs</strong><br>
-            Digital Harmony | Innovative Creation &copy; 2026
-        </div>
-
-        <div id="cartBar" class="cart-bar" onclick="openCartModal()">
-            <div class="cart-info">
-                <div id="cartCount" class="cart-count">0</div>
-                <div id="cartTotal" class="cart-total">Rp 0</div>
-            </div>
-            <div class="cart-view-btn">
-                Keranjang 
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
-            </div>
-        </div>
-    </div>
-
-    <div id="cartModal" class="cart-modal" onclick="closeCartModal()">
-        <div class="modal-content" onclick="event.stopPropagation()">
-            <div class="modal-header">
-                <div class="modal-title">Keranjang Belanja</div>
-                <button class="btn-close-modal" onclick="closeCartModal()">✕</button>
+        <div class="info-section">
+            <div class="store-card">
+                <div class="store-title">Agreya Coffee Menteng <span style="color:#ccc;">›</span></div>
+                <div class="badge-closed">CLOSED - Open Today 06:00</div>
             </div>
             
-            <div id="cartItemsList" class="cart-items-list">
-                </div>
-            
-            <div class="invoice-box">
-                <div class="invoice-row">
-                    <div>Subtotal</div>
-                    <div id="invoiceSubtotal">Rp 0</div>
-                </div>
-                <div class="invoice-row">
-                    <div>Pajak Resto (PB1 10%)</div>
-                    <div id="invoiceTax">Rp 0</div>
-                </div>
-                <div class="invoice-row total-final">
-                    <div>Total Akhir</div>
-                    <div id="invoiceTotalFinal">Rp 0</div>
-                </div>
+            <div class="table-card">
+                Table Number: <span id="nomor-meja">Memuat...</span>
             </div>
             
-            <button class="btn-checkout-submit" onclick="processCheckout()">Kirim Pesanan Sekarang</button>
+            <div class="store-card" style="padding:0;">
+                <div class="promo-card">
+                    <span style="font-size:20px;">🪙</span>
+                    <div>
+                        Spend, get points & redeem voucher<br>
+                        <strong>Click here!</strong>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
 
-    <div id="successScreen" class="success-screen">
-        <div class="success-icon">✓</div>
-        <h2 style="font-weight:800; color: var(--primary);">Pesanan Berhasil!</h2>
-        <p style="font-size:13px; color: var(--text-muted); margin-top:4px;">Pesanan Anda telah diteruskan ke sistem Barista.</p>
-        
-        <div class="receipt-card">
-            <div class="receipt-header">
-                <div class="receipt-title">SENADA COFFEE & SPACE</div>
-                <div style="font-size:11px; color: var(--text-muted); margin-top:2px;" id="receiptTime"></div>
-            </div>
-            <div class="receipt-row" style="font-weight:700; border-bottom: 1px solid var(--border); padding-bottom:6px; margin-bottom:8px;">
-                <div>Lokasi Penempatan</div>
-                <div id="receiptTable" style="color:var(--accent);">Meja --</div>
-            </div>
-            <div id="receiptItemsBox" style="border-bottom: 1px dashed var(--border); padding-bottom:8px; margin-bottom:8px;">
-                </div>
-            <div class="receipt-row" style="font-weight:700; font-size:15px; margin-top:5px;">
-                <div>TOTAL NOTA</div>
-                <div id="receiptTotalFinal">Rp 0</div>
+        <div class="category-selector">
+            <div class="dropdown-box">
+                FOOD - HEALTHY FOOD
+                <span>⌄</span>
             </div>
         </div>
-        
-        <div style="font-size:12px; color: var(--text-muted); display:flex; align-items:center; gap:8px; margin-bottom:20px; background:#f5efe6; padding:10px 14px; border-radius:10px; width:100%;">
-            <span style="font-size:16px;">☕</span> 
-            <div style="text-align:left; font-weight:600; color:#5d4d42; line-height:1.3;">Mohon tunggu di tempat, barista kami sedang meracik menu pesanan Anda.</div>
-        </div>
-        
-        <button class="btn-back-home" onclick="resetAppToHome()">Pesan Menu Lainnya</button>
+
+        <div id="menu-container">
+            </div>
+
     </div>
 
     <script src="script.js"></script>
