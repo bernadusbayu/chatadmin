@@ -16,58 +16,67 @@
             --table-bg: #fdf8ef;
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
         body { background: var(--bg-main); color: var(--text-main); display: flex; justify-content: center; min-height: 100vh; }
         
-        /* App Container */
-        .app-container { width: 100%; max-width: 480px; background: var(--surface); min-height: 100vh; position: relative; padding-bottom: 80px; box-shadow: 0 0 20px rgba(0,0,0,0.05); }
+        .app-container { width: 100%; max-width: 480px; background: var(--surface); min-height: 100vh; position: relative; padding-bottom: 90px; box-shadow: 0 0 20px rgba(0,0,0,0.05); }
 
-        /* Hero Image & Top Nav */
+        /* Hero & Top Nav */
         .hero-section { width: 100%; height: 180px; background: url('https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=600&q=80') center/cover; position: relative; }
         .hero-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4); }
         .top-nav { position: absolute; top: 15px; right: 15px; display: flex; gap: 10px; z-index: 2; }
         .icon-btn { width: 36px; height: 36px; border-radius: 50%; background: white; border: none; display: flex; align-items: center; justify-content: center; font-size: 16px; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
 
-        /* Store Info Cards */
+        /* Store Cards */
         .info-section { padding: 0 15px; margin-top: -20px; position: relative; z-index: 3; }
         .store-card { background: white; border-radius: 12px; padding: 15px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); margin-bottom: 12px; }
         .store-title { font-size: 16px; font-weight: 700; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; }
         .badge-closed { background: var(--accent-red); color: white; padding: 4px 10px; border-radius: 6px; font-size: 11px; font-weight: 700; display: inline-block; }
-        
         .table-card { background: var(--table-bg); border-radius: 12px; padding: 15px; text-align: center; font-weight: 600; font-size: 14px; margin-bottom: 12px; border: 1px solid #faeacc; }
-        
-        .promo-card { display: flex; align-items: center; gap: 12px; padding: 12px 15px; border-top: 1px solid var(--border-color); font-size: 12px; color: var(--text-muted); }
+        .promo-card { display: flex; align-items: center; gap: 12px; padding: 12px 15px; border-top: 1px solid var(--border-color); font-size: 12px; color: var(--text-muted); cursor: pointer;}
         .promo-card strong { color: #d68b1e; font-weight: 600; }
 
-        /* Sticky Category Selector */
+        /* Sticky Dropdown Kategori */
         .category-selector { position: sticky; top: 0; background: white; padding: 15px; z-index: 10; border-bottom: 1px solid var(--border-color); }
-        .dropdown-box { border: 1px solid var(--accent-gold); border-radius: 8px; padding: 10px 15px; font-size: 12px; font-weight: 700; color: #b8860b; display: flex; justify-content: space-between; align-items: center; }
+        .dropdown-box { border: 1px solid var(--accent-gold); border-radius: 8px; padding: 10px 15px; font-size: 13px; font-weight: 700; color: #b8860b; display: flex; justify-content: space-between; align-items: center; cursor: pointer; background: white; }
+        
+        /* List Kategori Muncul Saat Diklik */
+        .dropdown-list { display: none; position: absolute; top: 60px; left: 15px; right: 15px; background: white; border: 1px solid var(--border-color); border-radius: 8px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); overflow: hidden; z-index: 11; }
+        .dropdown-list.show { display: block; }
+        .dropdown-item { padding: 12px 15px; border-bottom: 1px solid var(--border-color); font-size: 13px; font-weight: 600; cursor: pointer; }
+        .dropdown-item:hover { background: #f9f9f9; }
+        .dropdown-item:last-child { border-bottom: none; }
 
-        /* Menu List Styling */
-        .menu-group { margin-bottom: 25px; }
+        /* Menu Items */
         .group-title { font-size: 14px; font-weight: 600; color: var(--text-muted); margin: 20px 15px 10px 15px; text-transform: uppercase; letter-spacing: 0.5px; }
         .sub-group-title { font-size: 15px; font-weight: 700; margin: 0 15px 15px 15px; }
         
-        .menu-item { display: flex; gap: 15px; padding: 15px; border-bottom: 1px solid var(--border-color); transition: background 0.2s; cursor: pointer; }
-        .menu-item:hover { background: #fdfdfd; }
+        .menu-item { display: flex; gap: 15px; padding: 15px; border-bottom: 1px solid var(--border-color); transition: background 0.2s; cursor: pointer; position: relative; }
+        .menu-item:active { background: #f5f5f5; }
         .menu-img { width: 85px; height: 85px; border-radius: 12px; object-fit: cover; border: 1px solid var(--border-color); }
         
         .menu-info { flex: 1; display: flex; flex-direction: column; justify-content: center; }
         .menu-name { font-size: 14px; font-weight: 700; margin-bottom: 4px; line-height: 1.3; }
         .menu-desc { font-size: 12px; color: var(--text-muted); line-height: 1.4; margin-bottom: 8px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
-        
         .menu-bottom { display: flex; justify-content: space-between; align-items: flex-end; margin-top: auto; }
         .menu-price { font-size: 14px; font-weight: 700; }
         .menu-stock { font-size: 11px; color: var(--text-muted); }
         
-        /* Status Sold Out */
+        .menu-item.sold-out { cursor: not-allowed; }
         .menu-item.sold-out .menu-img { filter: grayscale(100%) opacity(0.6); }
         .menu-item.sold-out .menu-name, .menu-item.sold-out .menu-desc, .menu-item.sold-out .menu-price { color: #a0a0a0; }
         .badge-soldout { font-size: 12px; font-weight: 700; color: #888; }
 
-        /* Add Button Logic (Hidden by default, shown on click/cart logic) */
-        .btn-add { background: white; border: 1px solid var(--border-color); padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; cursor: pointer; }
+        /* Elemen Plus Kuantitas di Kanan */
+        .qty-badge { position: absolute; right: 15px; top: 15px; background: var(--accent-red); color: white; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: bold; display: none; }
 
+        /* Floating Cart Bar */
+        .cart-bar { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); width: calc(100% - 30px); max-width: 420px; background: var(--accent-red); color: white; border-radius: 12px; padding: 14px 20px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 5px 15px rgba(211,47,47,0.3); z-index: 100; cursor: pointer; display: none; animation: slideUp 0.3s ease; }
+        .cart-info { display: flex; align-items: center; }
+        .cart-count { background: white; color: var(--accent-red); width: 24px; height: 24px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; font-weight: bold; font-size: 12px; margin-right: 12px; }
+        .cart-total { font-weight: bold; font-size: 15px; }
+        
+        @keyframes slideUp { from { transform: translate(-50%, 20px); opacity: 0; } to { transform: translate(-50%, 0); opacity: 1; } }
     </style>
 </head>
 <body>
@@ -76,22 +85,22 @@
         <div class="hero-section">
             <div class="hero-overlay"></div>
             <div class="top-nav">
-                <button class="icon-btn">🔍</button>
-                <button class="icon-btn">☰</button>
+                <button class="icon-btn" onclick="alert('Fitur Pencarian Segera Hadir')">🔍</button>
+                <button class="icon-btn" onclick="alert('Menu Samping Dibuka')">☰</button>
             </div>
         </div>
 
         <div class="info-section">
             <div class="store-card">
                 <div class="store-title">Agreya Coffee Menteng <span style="color:#ccc;">›</span></div>
-                <div class="badge-closed">CLOSED - Open Today 06:00</div>
+                <div class="badge-closed">OPEN - Close Today 22:00</div>
             </div>
             
             <div class="table-card">
-                Table Number: <span id="nomor-meja">Memuat...</span>
+                Table Number: <span id="nomor-meja" style="color:var(--accent-red);">Memuat...</span>
             </div>
             
-            <div class="store-card" style="padding:0;">
+            <div class="store-card" style="padding:0;" onclick="alert('Klaim Voucher Anda!')">
                 <div class="promo-card">
                     <span style="font-size:20px;">🪙</span>
                     <div>
@@ -103,15 +112,28 @@
         </div>
 
         <div class="category-selector">
-            <div class="dropdown-box">
-                FOOD - HEALTHY FOOD
+            <div class="dropdown-box" id="dropdownBtn" onclick="toggleDropdown()">
+                <span id="activeCategoryText">SEMUA MENU</span>
                 <span>⌄</span>
+            </div>
+            <div class="dropdown-list" id="dropdownList">
+                <div class="dropdown-item" onclick="filterCategory('ALL', 'SEMUA MENU')">SEMUA MENU</div>
+                <div class="dropdown-item" onclick="filterCategory('THE JAKARTA FLOSS', 'ROTI ABON GULUNG')">ROTI ABON GULUNG</div>
+                <div class="dropdown-item" onclick="filterCategory('BOLEN LILIT', 'BOLEN LILIT')">BOLEN LILIT</div>
+                <div class="dropdown-item" onclick="filterCategory('FOOD', 'PIZZAREYA')">PIZZAREYA</div>
+                <div class="dropdown-item" onclick="filterCategory('BEVERAGES', 'AGREYA SIGNATURE')">AGREYA SIGNATURE</div>
             </div>
         </div>
 
-        <div id="menu-container">
-            </div>
+        <div id="menu-container"></div>
 
+        <div id="cartBar" class="cart-bar" onclick="alert('Sistem Checkout Terhubung! Total Bayar: ' + document.getElementById('cartTotal').innerText)">
+            <div class="cart-info">
+                <span id="cartCount" class="cart-count">0</span>
+                <span id="cartTotal" class="cart-total">Rp 0</span>
+            </div>
+            <div style="font-size: 13px; font-weight: bold;">View Cart ➔</div>
+        </div>
     </div>
 
     <script src="script.js"></script>
