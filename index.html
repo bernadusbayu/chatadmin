@@ -3,196 +3,274 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Senada Order - Premium Menu Digital</title>
+    <title>Senada Order - Premium Self-Ordering System</title>
     <style>
+        :root {
+            --primary: #1e1b18;
+            --accent: #bc986a;
+            --accent-light: #f5efe6;
+            --bg-main: #fcfbfa;
+            --text-dark: #2c2623;
+            --text-muted: #7a706b;
+            --surface: #ffffff;
+            --border: #f1eae1;
+        }
+
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
-        body { background: #f8f5f0; color: #2c1a11; display: flex; justify-content: center; min-height: 100vh; }
+        body { background: #f5f3f0; color: var(--text-dark); display: flex; justify-content: center; min-height: 100vh; }
         
-        /* Container App Mockup HP */
-        .app-container { width: 100%; max-width: 450px; background: #ffffff; min-height: 100vh; display: flex; flex-direction: column; position: relative; box-shadow: 0 0 20px rgba(0,0,0,0.05); padding-bottom: 90px; }
+        /* Container Mockup Smartphone */
+        .app-container { 
+            width: 100%; 
+            max-width: 450px; 
+            background: var(--bg-main); 
+            min-height: 100vh; 
+            display: flex; 
+            flex-direction: column; 
+            position: relative; 
+            box-shadow: 0 0 30px rgba(0,0,0,0.08); 
+            padding-bottom: 100px; 
+        }
         
-        /* Header Premium */
-        .app-header { background: #2c1a11; color: #fff; padding: 25px 20px; border-bottom-left-radius: 24px; border-bottom-right-radius: 24px; text-align: center; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
-        .app-header h1 { font-size: 22px; font-weight: 700; letter-spacing: 0.5px; margin-bottom: 6px; color: #f4eade; }
-        .table-badge { display: inline-block; background: #e6a65d; color: #2c1a11; padding: 5px 16px; border-radius: 30px; font-weight: 700; font-size: 13px; box-shadow: 0 2px 6px rgba(230,166,93,0.3); }
+        /* Header Banner Estetik */
+        .app-header { 
+            background: linear-gradient(180deg, #1e1b18 0%, #2e2824 100%); 
+            color: #fff; 
+            padding: 30px 20px 35px 20px; 
+            border-bottom-left-radius: 28px; 
+            border-bottom-right-radius: 28px; 
+            text-align: center; 
+            position: relative;
+        }
+        .app-header h1 { font-size: 24px; font-weight: 800; letter-spacing: 0.5px; color: #fdfaf7; margin-bottom: 8px; }
+        .app-header p { font-size: 12px; color: #b5a99f; margin-bottom: 12px; }
+        .table-badge { 
+            display: inline-flex; 
+            align-items: center; 
+            gap: 6px;
+            background: var(--accent); 
+            color: var(--primary); 
+            padding: 6px 18px; 
+            border-radius: 30px; 
+            font-weight: 800; 
+            font-size: 13px; 
+            box-shadow: 0 4px 12px rgba(188,152,106,0.3); 
+        }
 
-        /* Kategori Tab Menu Scrollable */
-        .category-container { display: flex; gap: 10px; padding: 15px 20px; overflow-x: auto; scrollbar-width: none; background: #ffffff; sticky; top: 0; z-index: 10; }
+        /* Navigasi Kategori Geser (Horizontal Scroll) */
+        .category-container { 
+            display: flex; 
+            gap: 12px; 
+            padding: 20px; 
+            overflow-x: auto; 
+            scrollbar-width: none; 
+            background: var(--bg-main); 
+            position: sticky; 
+            top: 0; 
+            z-index: 10; 
+        }
         .category-container::-webkit-scrollbar { display: none; }
-        .category-tab { padding: 8px 18px; background: #f0ebdf; border: none; border-radius: 20px; font-size: 13px; font-weight: 600; color: #614a3e; cursor: pointer; white-space: nowrap; transition: all 0.2s; }
-        .category-tab.active { background: #2c1a11; color: #ffffff; box-shadow: 0 4px 10px rgba(44,26,17,0.2); }
+        .category-tab { 
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 10px 20px; 
+            background: var(--surface); 
+            border: 1px solid var(--border); 
+            border-radius: 30px; 
+            font-size: 13px; 
+            font-weight: 700; 
+            color: var(--text-muted); 
+            cursor: pointer; 
+            white-space: nowrap; 
+            transition: all 0.25s ease; 
+        }
+        .category-tab.active { 
+            background: var(--primary); 
+            color: #ffffff; 
+            border-color: var(--primary);
+            box-shadow: 0 4px 12px rgba(30,27,24,0.15); 
+        }
 
-        /* Area Daftar Menu */
-        .menu-section { padding: 10px 20px; flex: 1; }
-        .menu-wrapper { display: none; animation: fadeIn 0.3s ease-in-out forwards; }
-        .menu-wrapper.active { display: grid; grid-template-columns: 1fr; gap: 15px; }
+        /* Wadah Utama Daftar Menu */
+        .menu-section { padding: 0 20px; flex: 1; min-height: 300px; }
+        .menu-grid { display: grid; grid-template-columns: 1fr; gap: 16px; animation: fadeInUp 0.4s ease; }
         
-        /* Card Menu Card */
-        .menu-card { display: flex; background: #fff; border-radius: 14px; border: 1px solid #ede7dc; overflow: hidden; box-shadow: 0 2px 6px rgba(0,0,0,0.02); transition: transform 0.2s; }
-        .menu-card:active { transform: scale(0.98); }
-        .menu-img { width: 95px; height: 95px; object-fit: cover; background: #f0ebdf; }
-        .menu-details { flex: 1; padding: 12px; display: flex; flex-direction: column; justify-content: space-between; }
-        .menu-title { font-size: 15px; font-weight: 700; color: #2c1a11; }
-        .menu-desc { font-size: 11px; color: #7c685c; line-height: 1.4; margin: 3px 0 8px 0; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        /* Desain Card Menu */
+        .menu-card { 
+            display: flex; 
+            background: var(--surface); 
+            border-radius: 18px; 
+            border: 1px solid var(--border); 
+            overflow: hidden; 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.015); 
+            transition: transform 0.2s, box-shadow 0.2s; 
+        }
+        .menu-card:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,0.03); }
+        .menu-img { width: 110px; height: 110px; object-fit: cover; background: #eae5dd; }
+        .menu-details { flex: 1; padding: 14px; display: flex; flex-direction: column; justify-content: space-between; }
+        .menu-title { font-size: 16px; font-weight: 700; color: var(--primary); }
+        .menu-desc { font-size: 12px; color: var(--text-muted); line-height: 1.4; margin: 4px 0 10px 0; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
         .menu-action { display: flex; justify-content: space-between; align-items: center; }
-        .menu-price { font-size: 14px; font-weight: 700; color: #a06a42; }
-        .btn-add-cart { background: #2c1a11; color: #fff; border: none; padding: 6px 14px; border-radius: 8px; font-size: 12px; font-weight: 600; cursor: pointer; transition: background 0.2s; }
-        .btn-add-cart:hover { background: #4a3225; }
+        .menu-price { font-size: 15px; font-weight: 800; color: var(--accent); }
+        
+        /* Elemen Tombol Kontrol Kuantitas */
+        .quantity-control { display: flex; align-items: center; background: var(--accent-light); border-radius: 8px; overflow: hidden; border: 1px solid #ebdcc5; }
+        .qty-btn { background: none; border: none; width: 28px; height: 28px; font-weight: bold; font-size: 16px; cursor: pointer; color: var(--primary); display: flex; align-items: center; justify-content: center; }
+        .qty-btn:active { background: #ebdcc5; }
+        .qty-number { font-size: 13px; font-weight: 700; width: 24px; text-align: center; }
+        .btn-add-initial { background: var(--primary); color: #fff; border: none; padding: 7px 16px; border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer; transition: background 0.2s; }
+        .btn-add-initial:hover { background: #3a322d; }
 
-        /* Floating Cart Bar (Bawah Luar) */
-        .cart-bar { position: fixed; bottom: 15px; left: 50%; transform: translateX(-50%); width: calc(100% - 30px); max-width: 420px; background: #2c1a11; border-radius: 16px; padding: 14px 20px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 8px 24px rgba(0,0,0,0.2); color: #fff; cursor: pointer; display: none; z-index: 99; }
-        .cart-info { display: flex; align-items: center; gap: 10px; }
-        .cart-count { background: #e6a65d; color: #2c1a11; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 12px; }
-        .cart-total { font-weight: 700; font-size: 15px; color: #f4eade; }
-        .cart-view-btn { font-size: 13px; font-weight: 600; color: #e6a65d; }
+        /* Floating Cart Bar di Layar Bawah */
+        .cart-bar { 
+            position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); 
+            width: calc(100% - 40px); max-width: 410px; 
+            background: var(--primary); border-radius: 18px; padding: 16px 22px; 
+            display: flex; justify-content: space-between; align-items: center; 
+            box-shadow: 0 10px 25px rgba(30,27,24,0.3); color: #fff; 
+            cursor: pointer; display: none; z-index: 90; animation: slideUp 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .cart-info { display: flex; align-items: center; gap: 12px; }
+        .cart-count { background: var(--accent); color: var(--primary); width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 13px; }
+        .cart-total { font-weight: 800; font-size: 16px; color: #fdfaf7; }
+        .cart-view-btn { font-size: 13px; font-weight: 700; color: var(--accent); display: flex; align-items: center; gap: 4px; }
 
-        /* Modal Ringkasan Keranjang */
-        .cart-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 100; display: flex; align-items: flex-end; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
+        /* Modal Slip Keranjang Belanja */
+        .cart-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 100; display: flex; align-items: flex-end; justify-content: center; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
         .cart-modal.show { opacity: 1; pointer-events: auto; }
-        .modal-content { width: 100%; max-width: 450px; background: #fff; border-top-left-radius: 24px; border-top-right-radius: 24px; padding: 25px 20px; max-height: 80vh; display: flex; flex-direction: column; transform: translateY(100%); transition: transform 0.3s ease; }
+        .modal-content { width: 100%; max-width: 450px; background: #fff; border-top-left-radius: 28px; border-top-right-radius: 28px; padding: 25px 20px; max-height: 85vh; display: flex; flex-direction: column; transform: translateY(100%); transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1); }
         .cart-modal.show .modal-content { transform: translateY(0); }
-        .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; border-bottom: 1px solid #f0ebdf; padding-bottom: 10px; }
-        .modal-title { font-size: 18px; font-weight: 700; }
-        .btn-close-modal { background: none; border: none; font-size: 20px; cursor: pointer; color: #888; }
-        .cart-items-list { overflow-y: auto; flex: 1; max-height: 40vh; }
-        .cart-item-row { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px dashed #f0ebdf; }
-        .checkout-box { margin-top: 15px; padding-top: 15px; border-top: 1px solid #f0ebdf; }
-        .checkout-total-row { display: flex; justify-content: space-between; font-weight: 700; font-size: 16px; margin-bottom: 15px; }
-        .btn-checkout-submit { width: 100%; background: #2c1a11; color: #fff; border: none; padding: 14px; border-radius: 12px; font-size: 15px; font-weight: 700; cursor: pointer; }
+        .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; border-bottom: 1px solid var(--border); padding-bottom: 12px; }
+        .modal-title { font-size: 18px; font-weight: 800; color: var(--primary); }
+        .btn-close-modal { background: none; border: none; font-size: 22px; cursor: pointer; color: var(--text-muted); }
+        
+        .cart-items-list { overflow-y: auto; flex: 1; margin-bottom: 10px; padding-right: 2px; }
+        .cart-item-row { display: flex; justify-content: space-between; align-items: center; padding: 14px 0; border-bottom: 1px dashed var(--border); }
+        .note-input { width: 100%; border: 1px solid var(--border); background: #faf9f7; padding: 8px 12px; border-radius: 8px; font-size: 12px; margin-top: 6px; outline: none; color: var(--text-dark); }
+        .note-input:focus { border-color: var(--accent); }
 
-        /* Footer Agency Logo */
-        .brand-footer { text-align: center; padding: 25px 10px; font-size: 11px; color: #a89a90; }
-        .brand-footer strong { color: #a06a42; }
+        /* Detail Breakdown Nota */
+        .invoice-box { background: #faf9f7; border-radius: 12px; padding: 14px; margin-top: 10px; }
+        .invoice-row { display: flex; justify-content: space-between; font-size: 13px; color: var(--text-muted); margin-bottom: 6px; }
+        .invoice-row.total-final { font-size: 16px; font-weight: 800; color: var(--primary); margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--border); margin-bottom: 0; }
+        .btn-checkout-submit { width: 100%; background: var(--primary); color: #fff; border: none; padding: 15px; border-radius: 14px; font-size: 15px; font-weight: 700; margin-top: 15px; cursor: pointer; transition: background 0.2s; }
+        .btn-checkout-submit:hover { background: #3a322d; }
 
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+        /* Screen Nota Sukses (Custom Receipt Screen) */
+        .success-screen { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: #ffffff; z-index: 200; display: none; flex-direction: column; align-items: center; padding: 40px 25px; text-align: center; animation: fadeIn 0.4s ease forwards; }
+        .success-icon { width: 64px; height: 64px; background: #e8f5e9; color: #2e7d32; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; font-size: 28px; font-weight: bold; }
+        .receipt-card { width: 100%; background: #faf9f7; border: 1px solid var(--border); border-radius: 16px; padding: 20px; margin: 20px 0; position: relative; text-align: left; }
+        .receipt-card::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 100%; height: 10px; background-image: linear-gradient(-45deg, #faf9f7 4px, transparent 0), linear-gradient(45deg, #faf9f7 4px, transparent 0); background-size: 8px 12px; }
+        .receipt-header { text-align: center; border-bottom: 1px dashed var(--border); padding-bottom: 12px; margin-bottom: 12px; }
+        .receipt-title { font-weight: 800; font-size: 16px; color: var(--primary); }
+        .receipt-row { display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 6px; }
+        .btn-back-home { background: var(--accent); color: var(--primary); border: none; width: 100%; padding: 14px; border-radius: 12px; font-weight: 700; font-size: 14px; cursor: pointer; margin-top: auto; }
+
+        /* Branding Agency Footer */
+        .brand-footer { text-align: center; padding: 35px 10px 15px 10px; font-size: 11px; color: #baaead; line-height: 1.5; }
+        .brand-footer strong { color: var(--accent); font-weight: 700; }
+
+        /* Animasi */
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes slideUp { from { opacity: 0; transform: translate(-50%, 30px); } to { opacity: 1; transform: translate(-50%, 0); } }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     </style>
 </head>
 <body>
 
-    <div class="app-container">
+    <div class="app-container" id="appBody">
         <div class="app-header">
             <h1>Senada Coffee & Space</h1>
-            <div id="nomor-meja" class="table-badge">Memuat Meja...</div>
+            <p>Freshly Brewed Digital Experience</p>
+            <div id="nomor-meja" class="table-badge">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                <span id="meja-text">Memuat...</span>
+            </div>
         </div>
 
-        <div class="category-container">
-            <button class="category-tab active" onclick="switchCategory('coffee')">☕ Coffee</button>
-            <button class="category-tab" onclick="switchCategory('non-coffee')">🍵 Non-Coffee</button>
-            <button class="category-tab" onclick="switchCategory('beverages')">🥤 Beverages</button>
-            <button class="category-tab" onclick="switchCategory('snacks')">🥐 Snacks</button>
-        </div>
+        <div class="category-container" id="categoryNav">
+            </div>
 
         <div class="menu-section">
-            
-            <div id="cat-coffee" class="menu-wrapper active">
-                <div class="menu-card">
-                    <img class="menu-img" src="https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&w=150&q=80">
-                    <div class="menu-details">
-                        <div>
-                            <div class="menu-title">Es Kopi Susu Senada</div>
-                            <div class="menu-desc">Espresso blend premium, susu segar, dan racikan rahasia gula aren ala Senada.</div>
-                        </div>
-                        <div class="menu-action">
-                            <div class="menu-price">Rp 22.000</div>
-                            <button class="btn-add-cart" onclick="addToCart('Es Kopi Susu Senada', 22000)">Tambah</button>
-                        </div>
-                    </div>
+            <div id="menuGrid" class="menu-grid">
                 </div>
-                <div class="menu-card">
-                    <img class="menu-img" src="https://images.unsplash.com/photo-1570968915860-54d5c301fc9f?auto=format&fit=crop&w=150&q=80">
-                    <div class="menu-details">
-                        <div>
-                            <div class="menu-title">Cafe Latte (Hot)</div>
-                            <div class="menu-desc">Double shot espresso dengan tekstur foam susu lembut dan creamy.</div>
-                        </div>
-                        <div class="menu-action">
-                            <div class="menu-price">Rp 25.000</div>
-                            <button class="btn-add-cart" onclick="addToCart('Cafe Latte (Hot)', 25000)">Tambah</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div id="cat-non-coffee" class="menu-wrapper">
-                <div class="menu-card">
-                    <img class="menu-img" src="https://images.unsplash.com/photo-1536256263959-770b48d82b0a?auto=format&fit=crop&w=150&q=80">
-                    <div class="menu-details">
-                        <div>
-                            <div class="menu-title">Pure Matcha Latte</div>
-                            <div class="menu-desc">Matcha Kyoto Jepang grade A dikombinasikan dengan artisan steamed milk.</div>
-                        </div>
-                        <div class="menu-action">
-                            <div class="menu-price">Rp 26.000</div>
-                            <button class="btn-add-cart" onclick="addToCart('Pure Matcha Latte', 26000)">Tambah</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div id="cat-beverages" class="menu-wrapper">
-                <div class="menu-card">
-                    <img class="menu-img" src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=150&q=80">
-                    <div class="menu-details">
-                        <div>
-                            <div class="menu-title">Tropical Iced Tea</div>
-                            <div class="menu-desc">Teh hitam aromatik dingin dengan ekstrak buah markisa dan jeruk segar.</div>
-                        </div>
-                        <div class="menu-action">
-                            <div class="menu-price">Rp 19.000</div>
-                            <button class="btn-add-cart" onclick="addToCart('Tropical Iced Tea', 19000)">Tambah</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div id="cat-snacks" class="menu-wrapper">
-                <div class="menu-card">
-                    <img class="menu-img" src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=150&q=80">
-                    <div class="menu-details">
-                        <div>
-                            <div class="menu-title">Butter Croissant</div>
-                            <div class="menu-desc">Flaky dan renyah di luar, kaya akan rasa mentega wijen Prancis di dalam.</div>
-                        </div>
-                        <div class="menu-action">
-                            <div class="menu-price">Rp 18.000</div>
-                            <button class="btn-add-cart" onclick="addToCart('Butter Croissant', 18000)">Tambah</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
         </div>
 
         <div class="brand-footer">
-            Powered by <strong>Senada CreatLabs</strong><br>
-            Digital Harmony | Innovative Creation
+            Sistem Solusi Digital oleh <strong>Senada CreatLabs</strong><br>
+            Digital Harmony | Innovative Creation &copy; 2026
         </div>
 
-        <div id="cartBar" class="cart-bar" onclick="toggleModal(true)">
+        <div id="cartBar" class="cart-bar" onclick="openCartModal()">
             <div class="cart-info">
                 <div id="cartCount" class="cart-count">0</div>
                 <div id="cartTotal" class="cart-total">Rp 0</div>
             </div>
-            <div class="cart-view-btn">Lihat Keranjang →</div>
+            <div class="cart-view-btn">
+                Keranjang 
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+            </div>
         </div>
     </div>
 
-    <div id="cartModal" class="cart-modal">
-        <div class="modal-content">
+    <div id="cartModal" class="cart-modal" onclick="closeCartModal()">
+        <div class="modal-content" onclick="event.stopPropagation()">
             <div class="modal-header">
-                <div class="modal-title">Detail Pesanan Kamu</div>
-                <button class="btn-close-modal" onclick="event.stopPropagation(); toggleModal(false)">✕</button>
+                <div class="modal-title">Keranjang Belanja</div>
+                <button class="btn-close-modal" onclick="closeCartModal()">✕</button>
             </div>
+            
             <div id="cartItemsList" class="cart-items-list">
                 </div>
-            <div class="checkout-box">
-                <div class="checkout-total-row">
-                    <div>Total Bayar:</div>
-                    <div id="modalTotal">Rp 0</div>
+            
+            <div class="invoice-box">
+                <div class="invoice-row">
+                    <div>Subtotal</div>
+                    <div id="invoiceSubtotal">Rp 0</div>
                 </div>
-                <button class="btn-checkout-submit" onclick="submitOrder()">Kirim Pesanan Ke Dapur</button>
+                <div class="invoice-row">
+                    <div>Pajak Resto (PB1 10%)</div>
+                    <div id="invoiceTax">Rp 0</div>
+                </div>
+                <div class="invoice-row total-final">
+                    <div>Total Akhir</div>
+                    <div id="invoiceTotalFinal">Rp 0</div>
+                </div>
+            </div>
+            
+            <button class="btn-checkout-submit" onclick="processCheckout()">Kirim Pesanan Sekarang</button>
+        </div>
+    </div>
+
+    <div id="successScreen" class="success-screen">
+        <div class="success-icon">✓</div>
+        <h2 style="font-weight:800; color: var(--primary);">Pesanan Berhasil!</h2>
+        <p style="font-size:13px; color: var(--text-muted); margin-top:4px;">Pesanan Anda telah diteruskan ke sistem Barista.</p>
+        
+        <div class="receipt-card">
+            <div class="receipt-header">
+                <div class="receipt-title">SENADA COFFEE & SPACE</div>
+                <div style="font-size:11px; color: var(--text-muted); margin-top:2px;" id="receiptTime"></div>
+            </div>
+            <div class="receipt-row" style="font-weight:700; border-bottom: 1px solid var(--border); padding-bottom:6px; margin-bottom:8px;">
+                <div>Lokasi Penempatan</div>
+                <div id="receiptTable" style="color:var(--accent);">Meja --</div>
+            </div>
+            <div id="receiptItemsBox" style="border-bottom: 1px dashed var(--border); padding-bottom:8px; margin-bottom:8px;">
+                </div>
+            <div class="receipt-row" style="font-weight:700; font-size:15px; margin-top:5px;">
+                <div>TOTAL NOTA</div>
+                <div id="receiptTotalFinal">Rp 0</div>
             </div>
         </div>
+        
+        <div style="font-size:12px; color: var(--text-muted); display:flex; align-items:center; gap:8px; margin-bottom:20px; background:#f5efe6; padding:10px 14px; border-radius:10px; width:100%;">
+            <span style="font-size:16px;">☕</span> 
+            <div style="text-align:left; font-weight:600; color:#5d4d42; line-height:1.3;">Mohon tunggu di tempat, barista kami sedang meracik menu pesanan Anda.</div>
+        </div>
+        
+        <button class="btn-back-home" onclick="resetAppToHome()">Pesan Menu Lainnya</button>
     </div>
 
     <script src="script.js"></script>
